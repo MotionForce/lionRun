@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://bexiup8k3j6t6"]
+
+[ext_resource type="Script" path="res://PlayerController.gd" id="1_htudv"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sgqg3"]
+radius = 25.0
+height = 100.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5sdbe"]
+radius = 25.0
+height = 100.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxsxk"]
+size = Vector2(50, 7.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4e0jd"]
+size = Vector2(1155, 125)
+
+[sub_resource type="QuadMesh" id="QuadMesh_cs3ef"]
+size = Vector2(1155, 125)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Player"]
+position = Vector2(-450, 172.25)
+collision_layer = 0
+script = ExtResource("1_htudv")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Player/CharacterBody2D"]
+rotation = -1.5708
+mesh = SubResource("CapsuleMesh_sgqg3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CharacterBody2D"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_5sdbe")
+
+[node name="GroundCheck" type="Area2D" parent="Player/CharacterBody2D"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CharacterBody2D/GroundCheck"]
+position = Vector2(0, 28.75)
+shape = SubResource("RectangleShape2D_uxsxk")
+
+[node name="Timer1" type="Timer" parent="Player/CharacterBody2D"]
+wait_time = 5.0
+
+[node name="Ground" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(0, 260)
+shape = SubResource("RectangleShape2D_4e0jd")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Ground"]
+position = Vector2(0, 260)
+mesh = SubResource("QuadMesh_cs3ef")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="timeout" from="Player/CharacterBody2D/Timer1" to="Player/CharacterBody2D" method="on_timer1_timeout"]
