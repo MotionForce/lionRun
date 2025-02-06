@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://80baen2a2jlw"]
+[gd_scene load_steps=11 format=3 uid="uid://80baen2a2jlw"]
 
 [ext_resource type="Script" path="res://PlayerController.gd" id="1_ifnw3"]
 [ext_resource type="Texture2D" uid="uid://b43kaqsymbyui" path="res://assets/lion/lion_idle.png" id="2_cdiq8"]
@@ -35,12 +35,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5sdbe"]
-radius = 32.0
-height = 112.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fu206"]
+radius = 40.0
+height = 100.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxsxk"]
-size = Vector2(50, 7)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iwfvo"]
+radius = 42.0
+height = 92.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ths"]
+size = Vector2(90, 7.5)
 
 [node name="Player" type="Node2D"]
 
@@ -59,14 +63,23 @@ frame_progress = 0.83111
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, -16)
 rotation = -1.5708
-shape = SubResource("CapsuleShape2D_5sdbe")
+shape = SubResource("CapsuleShape2D_fu206")
+
+[node name="ObstacleCheck" type="Area2D" parent="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/ObstacleCheck"]
+position = Vector2(0, -13)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_iwfvo")
 
 [node name="GroundCheck" type="Area2D" parent="CharacterBody2D"]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/GroundCheck"]
-position = Vector2(0, 28.5)
-shape = SubResource("RectangleShape2D_uxsxk")
+position = Vector2(0, 28.75)
+shape = SubResource("RectangleShape2D_y3ths")
 
 [node name="Timer1" type="Timer" parent="CharacterBody2D"]
 wait_time = 5.0
@@ -74,5 +87,6 @@ wait_time = 5.0
 [node name="Timer2" type="Timer" parent="CharacterBody2D"]
 wait_time = 5.0
 
+[connection signal="area_entered" from="CharacterBody2D/ObstacleCheck" to="CharacterBody2D" method="_on_obstacle_check_area_entered"]
 [connection signal="timeout" from="CharacterBody2D/Timer1" to="CharacterBody2D" method="on_timer1_timeout"]
 [connection signal="timeout" from="CharacterBody2D/Timer2" to="CharacterBody2D" method="on_timer2_timeout"]
