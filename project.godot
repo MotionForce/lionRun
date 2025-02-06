@@ -40,10 +40,11 @@ project/assembly_name="Carnaval 2025"
 [layer_names]
 
 2d_physics/layer_1="Ground"
+2d_physics/layer_2="Obstacles"
 
 [physics]
 
-2d/default_gravity=981.0
+2d/default_gravity=2943.0
 
 [rendering]
 

@@ -1,9 +1,7 @@
 extends CharacterBody2D
 
-const BASE_JUMP_VELOCITY = -442.7189
-
-const MAX_JUMP_HEIGHT = 450
-const MIN_JUMP_HEIGHT = 100
+const MAX_JUMP_HEIGHT = 400
+const MIN_JUMP_HEIGHT = 105
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -29,7 +27,7 @@ func _physics_process(delta):
 	if Input.is_action_just_released("Jump 1") and can_jump():
 		var hold_time = timer1.get_wait_time() - timer1.get_time_left()
 		if hold_time <= time_for_fast_jump:
-			velocity.y = BASE_JUMP_VELOCITY
+			velocity.y = sqrt(2*MIN_JUMP_HEIGHT/gravity) * -gravity
 		else:
 			var height = (hold_time - time_for_fast_jump) / (timer1.get_wait_time() - time_for_fast_jump) * (MAX_JUMP_HEIGHT - MIN_JUMP_HEIGHT) + MIN_JUMP_HEIGHT
 			velocity.y = sqrt(2*height/gravity) * -gravity
@@ -38,7 +36,7 @@ func _physics_process(delta):
 	if Input.is_action_just_released("Jump 2") and can_jump():
 		var hold_time = timer2.get_wait_time() - timer2.get_time_left()
 		if hold_time <= time_for_fast_jump:
-			velocity.y = BASE_JUMP_VELOCITY
+			velocity.y = sqrt(2*MIN_JUMP_HEIGHT/gravity) * -gravity
 		else:
 			var height = (hold_time - time_for_fast_jump) / (timer2.get_wait_time() - time_for_fast_jump) * (MAX_JUMP_HEIGHT - MIN_JUMP_HEIGHT) + MIN_JUMP_HEIGHT
 			velocity.y = sqrt(2*height/gravity) * -gravity
@@ -56,3 +54,6 @@ func on_timer1_timeout():
 	timer1.stop()
 func on_timer2_timeout():
 	timer2.stop()
+
+func _on_obstacle_check_area_entered(area):
+	print("collided with obstacle")

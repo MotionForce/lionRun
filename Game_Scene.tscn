@@ -1,27 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://bexiup8k3j6t6"]
+[gd_scene load_steps=5 format=3 uid="uid://bexiup8k3j6t6"]
 
 [ext_resource type="PackedScene" uid="uid://80baen2a2jlw" path="res://assets/prefabs/Player.tscn" id="1_da4tq"]
+[ext_resource type="Script" path="res://GameManager.gd" id="1_n5c85"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4e0jd"]
-size = Vector2(1155, 125)
+size = Vector2(1155, 175)
 
 [sub_resource type="QuadMesh" id="QuadMesh_cs3ef"]
-size = Vector2(1155, 125)
+size = Vector2(1155, 175)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_n5c85")
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_da4tq")]
-position = Vector2(-483, 173)
+position = Vector2(-523, 115)
+
+[node name="Obstacles" type="Node2D" parent="."]
 
 [node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(500, 0)
+scale = Vector2(2, 1)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(0, 260)
+position = Vector2(0, 235.75)
 shape = SubResource("RectangleShape2D_4e0jd")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Ground"]
-position = Vector2(0, 260)
+position = Vector2(0, 235.75)
 mesh = SubResource("QuadMesh_cs3ef")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="on_spawn_timer_timeout"]
