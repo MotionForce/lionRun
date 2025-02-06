@@ -29,3 +29,6 @@ web/vite.config.js.timestamp-*
 web/vite.config.ts.timestamp-*
 game/.vscode/settings.json
 *.vsidx
+
+# Krita
+/krita

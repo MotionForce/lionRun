@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://c13ihfcyilbxb"]
+
+[ext_resource type="Texture2D" uid="uid://b0p3nw3bvv6kd" path="res://assets/obstacles/cannon.png" id="1_3d2ig"]
+
+[node name="Cannon" type="Node2D"]
+position = Vector2(0, 4.76837e-07)
+scale = Vector2(0.095, 0.145)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(1.18, 1)
+texture = ExtResource("1_3d2ig")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-84.2105, -289.655, 105.263, -289.655, 210.526, 137.931, 284.211, 137.931, 252.632, 310.345, -263.158, 310.345, -294.737, 103.448, -200, 103.448)

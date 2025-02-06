@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0hywth3m7ebd"]
+
+[ext_resource type="Texture2D" uid="uid://dxu4qaxuics1q" path="res://assets/obstacles/trapeze.png" id="1_3vd3a"]
+
+[node name="Trapeze" type="Node2D"]
+position = Vector2(0, 4.76837e-07)
+scale = Vector2(0.095, 0.145)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_3vd3a")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(3389.47, -1241.38)
+scale = Vector2(10.5263, 6.89655)
+polygon = PackedVector2Array(-359, 196, -343, 162, -302, 162, -287, 196)

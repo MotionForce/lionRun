@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://1va2v4t7is3g"]
+
+[ext_resource type="Texture2D" uid="uid://ccqsm7ik4bx0l" path="res://assets/obstacles/cannon_ball.png" id="1_snbpe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hrx1h"]
+radius = 62.0818
+
+[node name="Cannon_ball" type="Node2D"]
+position = Vector2(0, 4.76837e-07)
+scale = Vector2(0.095, 0.145)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(1.526, 1)
+texture = ExtResource("1_snbpe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-136.842, 13.7931)
+scale = Vector2(1.526, 1)
+shape = SubResource("CircleShape2D_hrx1h")

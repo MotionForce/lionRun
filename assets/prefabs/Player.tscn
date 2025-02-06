@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://80baen2a2jlw"]
+
+[ext_resource type="Script" path="res://PlayerController.gd" id="1_ifnw3"]
+[ext_resource type="Texture2D" uid="uid://b43kaqsymbyui" path="res://assets/lion/lion_idle.png" id="2_cdiq8"]
+[ext_resource type="Texture2D" uid="uid://c7jdemc8824sw" path="res://assets/lion/lion_runing_0001.png" id="3_lopi0"]
+[ext_resource type="Texture2D" uid="uid://d3m1ue82dpooi" path="res://assets/lion/lion_runing_0002.png" id="4_u7xdq"]
+[ext_resource type="Texture2D" uid="uid://cn2na41727uhk" path="res://assets/lion/lion_runing_0003.png" id="5_fm5xs"]
+[ext_resource type="Texture2D" uid="uid://bx2smafi6p43a" path="res://assets/lion/lion_runing_0004.png" id="6_3rmbd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2jspf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cdiq8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lopi0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u7xdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fm5xs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3rmbd")
+}],
+"loop": true,
+"name": &"runing",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5sdbe"]
+radius = 32.0
+height = 112.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxsxk"]
+size = Vector2(50, 7)
+
+[node name="Player" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 0
+script = ExtResource("1_ifnw3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(0, -13.288)
+scale = Vector2(0.112, 0.112)
+sprite_frames = SubResource("SpriteFrames_2jspf")
+animation = &"runing"
+frame = 2
+frame_progress = 0.83111
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, -16)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_5sdbe")
+
+[node name="GroundCheck" type="Area2D" parent="CharacterBody2D"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/GroundCheck"]
+position = Vector2(0, 28.5)
+shape = SubResource("RectangleShape2D_uxsxk")
+
+[node name="Timer1" type="Timer" parent="CharacterBody2D"]
+wait_time = 5.0
+
+[node name="Timer2" type="Timer" parent="CharacterBody2D"]
+wait_time = 5.0
+
+[connection signal="timeout" from="CharacterBody2D/Timer1" to="CharacterBody2D" method="on_timer1_timeout"]
+[connection signal="timeout" from="CharacterBody2D/Timer2" to="CharacterBody2D" method="on_timer2_timeout"]
