@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cf4e6r7aukkv3" path="res://assets/obstacles/ring.png" id="1_1oyvv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cx7ne"]
-size = Vector2(73.6842, 351.724)
+size = Vector2(73.6842, 820.788)
 
 [node name="Ring" type="Node2D"]
 position = Vector2(0, 4.76837e-07)
@@ -13,17 +13,31 @@ scale = Vector2(0.095, 0.145)
 scale = Vector2(2.095, 2.095)
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(0, -200.807)
 scale = Vector2(1.657, 1)
 texture = ExtResource("1_1oyvv")
+region_enabled = true
+region_rect = Rect2(0, 0, 382, 500.049)
 
 [node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
 z_index = 10
-scale = Vector2(1.657, 1)
+position = Vector2(0, -202.262)
+scale = Vector2(1.657, 0.999391)
 texture = ExtResource("1_1oyvv")
 offset = Vector2(76.71, 0)
 region_enabled = true
-region_rect = Rect2(154, 0, 228, 900)
+region_rect = Rect2(154, 0, 228, 497.713)
+
+[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D"]
+z_index = 10
+position = Vector2(-159.488, 445.371)
+scale = Vector2(2.0791, 2.24684)
+texture = ExtResource("1_1oyvv")
+offset = Vector2(76.71, 0)
+region_enabled = true
+region_rect = Rect2(156.16, 485.999, 58.7818, 373.973)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-5.26316, 224.138)
+position = Vector2(-3.96717, 447.428)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_cx7ne")
