@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0hywth3m7ebd"]
+[gd_scene load_steps=3 format=3 uid="uid://dxg8ly7ek21m5"]
 
 [ext_resource type="Texture2D" uid="uid://dxu4qaxuics1q" path="res://assets/obstacles/trapeze.png" id="1_3vd3a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xidfv"]
 size = Vector2(421.504, 229.075)
-
-[sub_resource type="SphereMesh" id="SphereMesh_ya4lo"]
 
 [node name="Trapeze" type="Node2D" groups=["Stickable", "Trapeze"]]
 position = Vector2(0, 4.76837e-07)
@@ -26,7 +24,3 @@ shape = SubResource("RectangleShape2D_xidfv")
 
 [node name="Minimal Jump" type="Node2D" parent="Sprite2D"]
 position = Vector2(0, 200)
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Sprite2D/Minimal Jump"]
-scale = Vector2(52.32, 52.32)
-mesh = SubResource("SphereMesh_ya4lo")

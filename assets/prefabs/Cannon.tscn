@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c13ihfcyilbxb"]
+[gd_scene load_steps=3 format=3 uid="uid://bou4de68n1tho"]
 
 [ext_resource type="Texture2D" uid="uid://b0p3nw3bvv6kd" path="res://assets/obstacles/cannon.png" id="1_3d2ig"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47qk0"]
 size = Vector2(252.632, 534.611)
-
-[sub_resource type="SphereMesh" id="SphereMesh_vm4aj"]
 
 [node name="Cannon" type="Node2D" groups=["Cannon", "Stickable"]]
 position = Vector2(0, 4.76837e-07)
@@ -29,7 +27,3 @@ shape = SubResource("RectangleShape2D_47qk0")
 [node name="Minimal Jump" type="Node2D" parent="Sprite2D"]
 position = Vector2(0, -350)
 scale = Vector2(4.16667, 3.31126)
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Sprite2D/Minimal Jump"]
-scale = Vector2(20.9, 20.9)
-mesh = SubResource("SphereMesh_vm4aj")
