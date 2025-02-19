@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
-const MAX_JUMP_HEIGHT = 400
+const MAX_JUMP_HEIGHT = 325
 const MIN_JUMP_HEIGHT = 105
+const INITIAL_GOLD = 30
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var time_for_fast_jump = 0.25
-var timer_wait_time = 2
+var timer_wait_time = 1.25
 @onready var timer1 = $Timer1
 @onready var timer2 = $Timer2
 

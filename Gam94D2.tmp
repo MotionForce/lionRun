@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bexiup8k3j6t6"]
+[gd_scene load_steps=6 format=3 uid="uid://bexiup8k3j6t6"]
 
 [ext_resource type="PackedScene" uid="uid://80baen2a2jlw" path="res://assets/prefabs/Player.tscn" id="1_da4tq"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_n5c85"]
-[ext_resource type="PackedScene" uid="uid://1va2v4t7is3g" path="res://assets/prefabs/Cannon_ball.tscn" id="3_fgkkh"]
-[ext_resource type="PackedScene" uid="uid://c13ihfcyilbxb" path="res://assets/prefabs/Cannon.tscn" id="3_gipg8"]
-[ext_resource type="PackedScene" uid="uid://b0hywth3m7ebd" path="res://assets/prefabs/Trapeze.tscn" id="4_6cda3"]
+[ext_resource type="PackedScene" uid="uid://b0hywth3m7ebd" path="res://assets/prefabs/Trapeze.tscn" id="4_g0j46"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4e0jd"]
 size = Vector2(1155, 175)
@@ -24,14 +22,12 @@ position = Vector2(-500, 115)
 
 [node name="Obstacles" type="Node2D" parent="."]
 
-[node name="Cannon" parent="Obstacles" instance=ExtResource("3_gipg8")]
+[node name="Trapeze" parent="Obstacles" instance=ExtResource("4_g0j46")]
+position = Vector2(0, 0)
+scale = Vector2(0.15, 0.23)
 
-[node name="Cannon_ball" parent="Obstacles" instance=ExtResource("3_fgkkh")]
-
-[node name="Cannon_ball2" parent="Obstacles" instance=ExtResource("3_fgkkh")]
-position = Vector2(0, 60)
-
-[node name="Trapeze" parent="Obstacles" instance=ExtResource("4_6cda3")]
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, 148.25)
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(500, 0)
@@ -49,4 +45,8 @@ mesh = SubResource("QuadMesh_cs3ef")
 [node name="GameTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="on_spawn_timer_timeout"]

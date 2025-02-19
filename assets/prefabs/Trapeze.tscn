@@ -1,17 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0hywth3m7ebd"]
+[gd_scene load_steps=4 format=3 uid="uid://b0hywth3m7ebd"]
 
 [ext_resource type="Texture2D" uid="uid://dxu4qaxuics1q" path="res://assets/obstacles/trapeze.png" id="1_3vd3a"]
 
-[node name="Trapeze" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xidfv"]
+size = Vector2(421.504, 229.075)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ya4lo"]
+
+[node name="Trapeze" type="Node2D" groups=["Stickable", "Trapeze"]]
 position = Vector2(0, 4.76837e-07)
-scale = Vector2(0.095, 0.145)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.175, 0.162)
 texture = ExtResource("1_3vd3a")
+offset = Vector2(0, 800)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(3389.47, -1241.38)
-scale = Vector2(10.5263, 6.89655)
-polygon = PackedVector2Array(-359, 196, -343, 162, -302, 162, -287, 196)
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+position = Vector2(0, -259.705)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(-5.03761, 1065.6)
+shape = SubResource("RectangleShape2D_xidfv")
+
+[node name="Minimal Jump" type="Node2D" parent="Sprite2D"]
+position = Vector2(0, 200)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Sprite2D/Minimal Jump"]
+scale = Vector2(52.32, 52.32)
+mesh = SubResource("SphereMesh_ya4lo")

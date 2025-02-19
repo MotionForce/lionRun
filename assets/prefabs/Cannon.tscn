@@ -1,16 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://c13ihfcyilbxb"]
+[gd_scene load_steps=4 format=3 uid="uid://c13ihfcyilbxb"]
 
 [ext_resource type="Texture2D" uid="uid://b0p3nw3bvv6kd" path="res://assets/obstacles/cannon.png" id="1_3d2ig"]
 
-[node name="Cannon" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47qk0"]
+size = Vector2(252.632, 534.611)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vm4aj"]
+
+[node name="Cannon" type="Node2D" groups=["Cannon", "Stickable"]]
 position = Vector2(0, 4.76837e-07)
-scale = Vector2(0.095, 0.145)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-scale = Vector2(1.18, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.24, 0.302)
 texture = ExtResource("1_3d2ig")
+centered = false
+offset = Vector2(-283.33, -160)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-84.2105, -289.655, 105.263, -289.655, 210.526, 137.931, 284.211, 137.931, 252.632, 310.345, -263.158, 310.345, -294.737, 103.448, -200, 103.448)
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+position = Vector2(-13.155, -262.5)
+scale = Vector2(0.847458, 1)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(19.667, 483.448)
+shape = SubResource("RectangleShape2D_47qk0")
+
+[node name="Minimal Jump" type="Node2D" parent="Sprite2D"]
+position = Vector2(0, -350)
+scale = Vector2(4.16667, 3.31126)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Sprite2D/Minimal Jump"]
+scale = Vector2(20.9, 20.9)
+mesh = SubResource("SphereMesh_vm4aj")

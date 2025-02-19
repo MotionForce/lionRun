@@ -2,42 +2,36 @@
 
 [ext_resource type="Texture2D" uid="uid://cf4e6r7aukkv3" path="res://assets/obstacles/ring.png" id="1_1oyvv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cx7ne"]
-size = Vector2(73.6842, 820.788)
+[sub_resource type="CircleShape2D" id="CircleShape2D_sk1xy"]
+radius = 286.42
 
-[node name="Ring" type="Node2D"]
+[node name="Ring" type="Node2D" groups=["Ring"]]
 position = Vector2(0, 4.76837e-07)
 scale = Vector2(0.095, 0.145)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-scale = Vector2(2.095, 2.095)
+[node name="Sprite2D" type="Node2D" parent="."]
+position = Vector2(0, -1800)
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(0, -200.807)
-scale = Vector2(1.657, 1)
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+scale = Vector2(3.5, 1.75)
 texture = ExtResource("1_1oyvv")
+offset = Vector2(0, 325)
 region_enabled = true
 region_rect = Rect2(0, 0, 382, 500.049)
 
-[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
-z_index = 10
-position = Vector2(0, -202.262)
-scale = Vector2(1.657, 0.999391)
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D"]
+scale = Vector2(3.811, 5.998)
 texture = ExtResource("1_1oyvv")
-offset = Vector2(76.71, 0)
-region_enabled = true
-region_rect = Rect2(154, 0, 228, 497.713)
-
-[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D"]
-z_index = 10
-position = Vector2(-159.488, 445.371)
-scale = Vector2(2.0791, 2.24684)
-texture = ExtResource("1_1oyvv")
-offset = Vector2(76.71, 0)
+offset = Vector2(-6.24, 346.305)
 region_enabled = true
 region_rect = Rect2(156.16, 485.999, 58.7818, 373.973)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-3.96717, 447.428)
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_cx7ne")
+[node name="Minimal Jump" type="Node2D" parent="Sprite2D"]
+position = Vector2(0, 600)
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(-21.0526, 593.103)
+scale = Vector2(1.31, 0.873)
+shape = SubResource("CircleShape2D_sk1xy")

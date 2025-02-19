@@ -6,16 +6,23 @@
 radius = 62.0818
 
 [node name="Cannon_ball" type="Node2D"]
-position = Vector2(0, 4.76837e-07)
-scale = Vector2(0.095, 0.145)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-scale = Vector2(1.526, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -335)
+scale = Vector2(0.355, 0.339)
 texture = ExtResource("1_snbpe")
+offset = Vector2(92.255, 300)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-136.842, 13.7931)
-scale = Vector2(1.526, 1)
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(0, 312.684)
 shape = SubResource("CircleShape2D_hrx1h")
+
+[node name="Minimum Stack Distance" type="Node2D" parent="Sprite2D"]
+position = Vector2(0, 137.5)
+
+[node name="Minimum Jump Distance" type="Node2D" parent="Sprite2D"]
+position = Vector2(0, 20)

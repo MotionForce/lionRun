@@ -35,13 +35,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fu206"]
-radius = 40.0
-height = 100.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xowg7"]
+size = Vector2(112.5, 72.195)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iwfvo"]
-radius = 42.0
-height = 92.0
+radius = 11.9
+height = 85.24
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ths"]
 size = Vector2(90, 7.5)
@@ -57,20 +56,17 @@ position = Vector2(0, -13.288)
 scale = Vector2(0.112, 0.112)
 sprite_frames = SubResource("SpriteFrames_2jspf")
 animation = &"runing"
-frame = 2
-frame_progress = 0.83111
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, -16)
-rotation = -1.5708
-shape = SubResource("CapsuleShape2D_fu206")
+position = Vector2(4.94, -16.855)
+shape = SubResource("RectangleShape2D_xowg7")
 
 [node name="ObstacleCheck" type="Area2D" parent="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/ObstacleCheck"]
-position = Vector2(0, -13)
+position = Vector2(14, -24)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_iwfvo")
 
@@ -78,7 +74,7 @@ shape = SubResource("CapsuleShape2D_iwfvo")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/GroundCheck"]
-position = Vector2(0, 28.75)
+position = Vector2(0, 23.485)
 shape = SubResource("RectangleShape2D_y3ths")
 
 [node name="Timer1" type="Timer" parent="CharacterBody2D"]
