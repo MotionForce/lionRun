@@ -26,12 +26,6 @@ offset = Vector2(-6.24, 346.305)
 region_enabled = true
 region_rect = Rect2(156.16, 485.999, 58.7818, 373.973)
 
-[node name="Minimal Jump" type="Node2D" parent="Sprite2D"]
-position = Vector2(0, 600)
-
-[node name="Area2D" type="Area2D" parent="Sprite2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
-position = Vector2(-21.0526, 593.103)
-scale = Vector2(1.31, 0.873)
-shape = SubResource("CircleShape2D_sk1xy")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-3.96717, 447.428)
+shape = SubResource("RectangleShape2D_cx7ne")
