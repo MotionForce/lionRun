@@ -63,7 +63,7 @@ shape = SubResource("RectangleShape2D_xowg7")
 
 [node name="ObstacleCheck" type="Area2D" parent="CharacterBody2D"]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/ObstacleCheck"]
 position = Vector2(14, -24)
