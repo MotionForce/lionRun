@@ -10,6 +10,7 @@ var speed_progression = 0
 var next_obstacle = null
 var cannon_balls_stack = []
 var previous_obstacle = null
+var previous_cannon_balls_stack = []
 var distance_to_spawn = 0;
 var random = RandomNumberGenerator.new()
 
@@ -81,6 +82,7 @@ func spawn_next_obstacle():
 		for cannon_ball in cannon_balls_stack:
 			obstacle_preload.remove_child(cannon_ball)
 			obstacle_parent.add_child(cannon_ball)
+		previous_cannon_balls_stack = cannon_balls_stack
 		cannon_balls_stack = []
 	determine_next_obstacle()
 	
@@ -108,6 +110,16 @@ func determine_if_stick():
 	if next_obstacle.is_in_group("Stickable") == false && (next_obstacle.is_in_group("Ring") == false || previous_obstacle.is_in_group("Trapeze") == false):
 		return
 	
+	var obstacle_minimum_jump = ground_global_y - next_obstacle.get_node("Sprite2D/Minimal Jump").global_position.y
+	var smallest_height = 5000
+	for cannon_ball in previous_cannon_balls_stack:
+		var minimum_jump_distance = cannon_ball.get_node("Sprite2D/Area2D/CollisionShape2D").global_position.distance_to(cannon_ball.get_node("Sprite2D/Minimum Jump Distance").global_position)
+		var cannon_ball_height = ground_global_y - cannon_ball.get_node("Sprite2D").global_position.y + minimum_jump_distance
+		if cannon_ball_height < smallest_height:
+			smallest_height = cannon_ball_height
+	if obstacle_minimum_jump > smallest_height:
+		return
+		
 	var random_num = random.randi_range(0, 3)
 	if random_num == 3:
 		next_obstacle.add_to_group("Queue_Stick")

@@ -29,10 +29,6 @@ func _ready():
 	timer2.wait_time = timer_wait_time
 
 func _physics_process(delta):
-	print(gold)
-	print("gold_stack: ", gold_bonus_stack)
-	print("collision_stack: ", collision_cost_stack)
-	print("patience_stack: ", patience_stack)
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
