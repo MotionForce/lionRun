@@ -2,7 +2,18 @@ extends CharacterBody2D
 
 const MAX_JUMP_HEIGHT = 325
 const MIN_JUMP_HEIGHT = 105
-const INITIAL_GOLD = 30
+const INITIAL_GOLD = 300
+
+const INITIAL_COLLISION_COST = -100
+const INITIAL_RING_REWARD = 100
+const INITIAL_PATIENCE_THRESHOLD = 25
+
+var gold = 300
+var max_gold_acquired = 300
+
+var gold_bonus_stack = 0
+var collision_cost_stack = 0
+var patience_stack = 0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -12,10 +23,16 @@ var timer_wait_time = 1.25
 @onready var timer2 = $Timer2
 
 func _ready():
+	gold = INITIAL_GOLD
+	max_gold_acquired = INITIAL_GOLD
 	timer1.wait_time = timer_wait_time
 	timer2.wait_time = timer_wait_time
 
 func _physics_process(delta):
+	print(gold)
+	print("gold_stack: ", gold_bonus_stack)
+	print("collision_stack: ", collision_cost_stack)
+	print("patience_stack: ", patience_stack)
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
@@ -56,5 +73,59 @@ func on_timer1_timeout():
 func on_timer2_timeout():
 	timer2.stop()
 
-func _on_obstacle_check_area_entered(area):
-	print("collided with obstacle")
+func on_obstacle_check_area_entered(area):
+	if area.collision_layer == 2:
+		on_general_collisision()
+	if area.collision_layer == 4:
+		on_ring_collision(area)
+
+func on_general_collisision():
+	collision_cost_stack += 1 * floor(1 + get_game_time() / 90)
+	change_gold_amount(calculate_collision_cost())
+
+func on_ring_collision(area):
+	area.get_parent().get_parent().add_to_group("Collided")
+	gold_bonus_stack += 1
+	patience_stack -= gold_bonus_stack - floor(get_speed_progression())
+	if patience_stack < 0:
+		patience_stack = 0
+	collision_cost_stack -= 1 * floor(1 + get_game_time() / 180)
+	if collision_cost_stack < 0:
+		collision_cost_stack = 0
+	change_gold_amount(calculate_gold_reward())
+
+func change_gold_amount(amount):
+	gold += amount
+	if gold > max_gold_acquired:
+		max_gold_acquired = gold
+	elif gold <= 0:
+		on_player_reach_0_gold()
+
+func on_player_reach_0_gold():
+	print ("player died")
+
+func on_queue_free_obstacle(obstacle):
+	if obstacle.is_in_group("Ring") == false:
+		return
+	if obstacle.is_in_group("Collided") == true:
+		return
+	patience_stack += 1
+	gold_bonus_stack -= 1 * floor(1 + get_game_time() / 90)
+	if gold_bonus_stack < 0:
+		gold_bonus_stack = 0
+
+func calculate_gold_reward():
+	var gold_reward = INITIAL_RING_REWARD * gold_bonus_stack
+	return gold_reward
+
+func calculate_collision_cost():
+	var collision_cost = INITIAL_COLLISION_COST * collision_cost_stack
+	if patience_stack >= float(INITIAL_PATIENCE_THRESHOLD) / (1 + (4 * get_speed_progression())):
+		collision_cost -= INITIAL_COLLISION_COST * patience_stack
+	return collision_cost
+
+func get_speed_progression():
+	return get_parent().get_parent().speed_progression
+	
+func get_game_time():
+	return get_parent().get_parent().game_time

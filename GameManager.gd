@@ -42,6 +42,7 @@ func _process(delta):
 	for obstacle in obstacle_parent.get_children():
 		obstacle.global_position.x += obstacle_move_speed * delta
 		if obstacle.global_position.x < -700:
+			get_node("Player/CharacterBody2D").on_queue_free_obstacle(obstacle)
 			obstacle.queue_free()
 
 func update_speed_progression():
@@ -250,7 +251,7 @@ func determine_general_cannon_ball_stack(maximum_height, minimum_distance_from_j
 		cannon_balls_stack.append(cannon_ball)
 
 func get_game_time():
-	var hours = floori(game_time / 3600)
-	var minutes = floori((game_time - hours * 3600) / 60)
+	var hours = floori(float(game_time) / 3600)
+	var minutes = floori(float(game_time - hours * 3600) / 60)
 	var seconds = game_time - (hours * 3600) - (minutes * 60)
-	print(hours, ":", minutes, ":", seconds, " || ", game_time)
+	#print(hours, ":", minutes, ":", seconds, " || ", game_time)

@@ -2,8 +2,9 @@ extends Control
 
 var game_scene = preload("res://Game_Scene.tscn").instantiate()
 
-func _unhandled_input(event):
-	if event is InputEventKey:
+func _input(event):
+	if event is InputEventKey || event is InputEventMouseButton:
+		print (event.as_text())
 		if event.pressed:
 			get_tree().change_scene_to_file("res://Game_Scene.tscn")
 

@@ -83,6 +83,6 @@ wait_time = 5.0
 [node name="Timer2" type="Timer" parent="CharacterBody2D"]
 wait_time = 5.0
 
-[connection signal="area_entered" from="CharacterBody2D/ObstacleCheck" to="CharacterBody2D" method="_on_obstacle_check_area_entered"]
+[connection signal="area_entered" from="CharacterBody2D/ObstacleCheck" to="CharacterBody2D" method="on_obstacle_check_area_entered"]
 [connection signal="timeout" from="CharacterBody2D/Timer1" to="CharacterBody2D" method="on_timer1_timeout"]
 [connection signal="timeout" from="CharacterBody2D/Timer2" to="CharacterBody2D" method="on_timer2_timeout"]
