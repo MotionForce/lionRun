@@ -36,6 +36,7 @@ func _ready():
 	obstacle_move_speed = INITIAL_MOVE_SPEED
 	determine_ground_y()
 	determine_next_obstacle()
+	$AudioStreamPlayer2D.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

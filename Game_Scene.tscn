@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bexiup8k3j6t6"]
+[gd_scene load_steps=6 format=3 uid="uid://bexiup8k3j6t6"]
 
 [ext_resource type="PackedScene" uid="uid://80baen2a2jlw" path="res://assets/prefabs/Player.tscn" id="1_da4tq"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_n5c85"]
+[ext_resource type="AudioStream" uid="uid://djq8762qg4vsq" path="res://Background Theme.mp3" id="3_v606v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4e0jd"]
 size = Vector2(1155, 175)
@@ -36,5 +37,9 @@ mesh = SubResource("QuadMesh_cs3ef")
 
 [node name="GameTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_v606v")
+volume_db = -8.0
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

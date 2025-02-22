@@ -76,10 +76,12 @@ func on_obstacle_check_area_entered(area):
 		on_ring_collision(area)
 
 func on_general_collisision():
+	play_obstacle_sound()
 	collision_cost_stack += 1 * floor(1 + get_game_time() / 90)
 	change_gold_amount(calculate_collision_cost())
 
 func on_ring_collision(area):
+	play_ring_sound()
 	area.get_parent().get_parent().add_to_group("Collided")
 	gold_bonus_stack += 1
 	patience_stack -= gold_bonus_stack - floor(get_speed_progression())
@@ -125,3 +127,15 @@ func get_speed_progression():
 	
 func get_game_time():
 	return get_parent().get_parent().game_time
+
+func play_ring_sound():
+	var ring_audio = get_node("RingAudio")
+	ring_audio.volume_db = randf_range(-5, 5)
+	ring_audio.pitch_scale = randf_range(0.5, 1.5)
+	ring_audio.play()
+
+func play_obstacle_sound():
+	var ring_audio = get_node("ObstacleAudio")
+	ring_audio.volume_db = randf_range(-5, 5)
+	ring_audio.pitch_scale = randf_range(0.5, 1.5)
+	ring_audio.play()
