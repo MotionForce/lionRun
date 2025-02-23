@@ -22,6 +22,7 @@ var timer_wait_time = 1.25
 @onready var timer1 = $Timer1
 @onready var timer2 = $Timer2
 @onready var animation = $AnimatedSprite2D
+@onready var ground_particle = $GroundParticle/CPUParticles2D
 var particle_parent
 
 var score = 0
@@ -42,8 +43,10 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		animation.stop()
+		ground_particle.emitting = false
 	else:
 		animation.play()
+		ground_particle.emitting = true
 
 	var press = Input.is_action_pressed("Jump 1") or Input.is_action_pressed("Jump 2")
 
