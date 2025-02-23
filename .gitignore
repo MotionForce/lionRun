@@ -36,3 +36,5 @@ game/.vscode/settings.json
 # Font
 assets/fonts/handwriten.sfd
 /assets/fonts/images
+/build/web
+/build/windows

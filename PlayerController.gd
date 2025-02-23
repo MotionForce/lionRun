@@ -21,6 +21,7 @@ var time_for_fast_jump = 0.25
 var timer_wait_time = 1.25
 @onready var timer1 = $Timer1
 @onready var timer2 = $Timer2
+@onready var animation = $AnimatedSprite2D
 
 func _ready():
 	gold = INITIAL_GOLD
@@ -31,6 +32,9 @@ func _ready():
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		animation.stop()
+	else:
+		animation.play()
 
 	if Input.is_action_just_pressed("Jump 1"):
 		timer1.start()

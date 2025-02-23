@@ -57,6 +57,7 @@ position = Vector2(0, -13.288)
 scale = Vector2(0.112, 0.112)
 sprite_frames = SubResource("SpriteFrames_2jspf")
 animation = &"runing"
+autoplay = "runing"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(4.94, -16.855)

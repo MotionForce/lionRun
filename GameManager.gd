@@ -31,6 +31,7 @@ var initial_position = Vector2(1500, 0)
 @onready var obstacle_preload = $"Preloaded Obstacles"
 @onready var obstacle_prefab = load("res://Obstacle.tscn")
 @onready var ground = $Ground
+@onready var floor_i = $FloorT
 
 func _ready():
 	obstacle_move_speed = INITIAL_MOVE_SPEED
@@ -41,6 +42,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	determine_spawn()
+	floor_i.global_position.x += obstacle_move_speed * delta
+	print(floor_i.global_position.x)
+	if floor_i.global_position.x < -1150:
+		floor_i.global_position.x = 3.75
 	for obstacle in obstacle_parent.get_children():
 		obstacle.global_position.x += obstacle_move_speed * delta
 		if obstacle.global_position.x < -700:
