@@ -104,6 +104,7 @@ z_index = -1
 position = Vector2(0, 24)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="CharacterBody2D/GroundParticle"]
+emitting = false
 amount = 6
 emission_shape = 3
 emission_rect_extents = Vector2(45, 5)
