@@ -176,5 +176,20 @@ grow_horizontal = 2
 grow_vertical = 2
 show_percentage = false
 
+[node name="Jump2" type="ProgressBar" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 450.0
+offset_top = 27.855
+offset_right = 654.0
+offset_bottom = 54.855
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false
+
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="finished" from="BackgroundMusic" to="." method="restart_background_music"]

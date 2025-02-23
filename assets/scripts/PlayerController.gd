@@ -27,7 +27,8 @@ var particle_parent
 
 var score = 0
 var hold_time = 0
-var e_hold_time = 0
+var e_hold_time_1 = 0
+var e_hold_time_2 = 0
 
 var particle_prefab_path = load("res://assets/prefabs/Particle.tscn")
 
@@ -48,7 +49,8 @@ func _physics_process(delta):
 		animation.play()
 		ground_particle.emitting = true
 
-	var press = Input.is_action_pressed("Jump 1") or Input.is_action_pressed("Jump 2")
+	var press1 = Input.is_action_pressed("Jump 1") 
+	var press2 = Input.is_action_pressed("Jump 2")
 
 	if Input.is_action_just_pressed("Jump 1"):
 		timer1.start()
@@ -74,10 +76,13 @@ func _physics_process(delta):
 			velocity.y = sqrt(2*height/gravity) * -gravity
 		timer2.stop()
 	
-	e_hold_time = timer1.get_wait_time() - timer1.get_time_left()
+	e_hold_time_1 = timer1.get_wait_time() - timer1.get_time_left()
+	e_hold_time_2 = timer2.get_wait_time() - timer2.get_time_left()
 
-	if not press:
-		e_hold_time = 0
+	if not press1:
+		e_hold_time_1 = 0
+	if not press2:
+		e_hold_time_2 = 0
 	
 	move_and_slide()
 

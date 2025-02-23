@@ -43,6 +43,7 @@ func _ready():
 	determine_ground_y()
 	determine_next_obstacle()
 	jump1.max_value = (player_controller.timer1.get_wait_time() - player_controller.time_for_fast_jump)
+	jump2.max_value = (player_controller.timer2.get_wait_time() - player_controller.time_for_fast_jump)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -55,7 +56,8 @@ func _process(delta):
 			obstacle.queue_free()
 	score_display.text = str(player_controller.score)
 	gold_display.text = str(player_controller.gold)
-	jump1.value = (player_controller.e_hold_time - player_controller.time_for_fast_jump) / (player_controller.timer1.get_wait_time() - player_controller.time_for_fast_jump)
+	jump1.value = (player_controller.e_hold_time_1 - player_controller.time_for_fast_jump) / (player_controller.timer1.get_wait_time() - player_controller.time_for_fast_jump)
+	jump2.value = (player_controller.e_hold_time_2 - player_controller.time_for_fast_jump) / (player_controller.timer2.get_wait_time() - player_controller.time_for_fast_jump)
 
 func update_speed_progression():
 	speed_progression = float(obstacle_move_speed - INITIAL_MOVE_SPEED) / float(OBSTACLE_MAX_SPEED - INITIAL_MOVE_SPEED)
