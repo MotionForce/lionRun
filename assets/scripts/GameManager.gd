@@ -36,9 +36,11 @@ var initial_position = Vector2(1500, -35)
 @onready var gold_display = $UI/GoldBox/Gold
 @onready var jump1 = $UI/Jump1
 @onready var jump2 = $UI/Jump2
+@onready var death_screen = $DeathScreen
 
 
 func _ready():
+	death_screen.visible = false
 	obstacle_move_speed = INITIAL_MOVE_SPEED
 	determine_ground_y()
 	determine_next_obstacle()
@@ -279,7 +281,21 @@ func get_game_time():
 	var hours = floori(float(game_time) / 3600)
 	var minutes = floori(float(game_time - hours * 3600) / 60)
 	var seconds = game_time - (hours * 3600) - (minutes * 60)
-	#print(hours, ":", minutes, ":", seconds, " || ", game_time)
+	var minutes_string = str(minutes)
+	if minutes < 10 :
+		minutes_string = "0" + str(minutes)
+	var seconds_string = str(seconds)
+	if seconds < 10 :
+		seconds_string = "0" + str(seconds)
+	return str(hours) + ":" + minutes_string + ":" + seconds_string
 
 func restart_background_music():
 	background_music.play()
+
+func end_game(gold, score):
+	get_tree().paused = true
+	var values_node = death_screen.get_node("Panel/HBoxContainer/Values")
+	values_node.get_node("Time").text = get_game_time()
+	values_node.get_node("Score").text = str(score) + " "
+	values_node.get_node("Gold").text = str(gold) + " "
+	death_screen.visible = true

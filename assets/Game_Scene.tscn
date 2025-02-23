@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dve7ju37uf7li"]
+[gd_scene load_steps=14 format=3 uid="uid://dve7ju37uf7li"]
 
 [ext_resource type="Script" path="res://assets/scripts/GameManager.gd" id="1_mkis0"]
 [ext_resource type="PackedScene" uid="uid://80baen2a2jlw" path="res://assets/prefabs/Player.tscn" id="3_vtsus"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b767plts0jf55" path="res://assets/input prompts/keyboard_space_icon.svg" id="6_c3blp"]
 [ext_resource type="Texture2D" uid="uid://dpctso4cjjmgg" path="res://assets/input prompts/keyboard_1.svg" id="7_ra71r"]
 [ext_resource type="Texture2D" uid="uid://bsk6kbp64fn5t" path="res://assets/input prompts/keyboard_3.svg" id="8_iyu05"]
+[ext_resource type="PackedScene" uid="uid://tb4iilejyldl" path="res://assets/death_screen.tscn" id="9_oybah"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_soshn"]
 
@@ -26,6 +27,7 @@ script = ExtResource("1_mkis0")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("3_vtsus")]
+z_index = 1
 position = Vector2(-500, 80)
 
 [node name="Preloaded Obstacles" type="Node2D" parent="."]
@@ -190,6 +192,8 @@ offset_bottom = 54.855
 grow_horizontal = 2
 grow_vertical = 2
 show_percentage = false
+
+[node name="DeathScreen" parent="." instance=ExtResource("9_oybah")]
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="finished" from="BackgroundMusic" to="." method="restart_background_music"]

@@ -132,8 +132,7 @@ func change_gold_amount(amount):
 		on_player_reach_0_gold()
 
 func on_player_reach_0_gold():
-	#print ("player died")
-	pass
+	get_parent().get_parent().end_game(max_gold_acquired, score)
 
 func on_queue_free_obstacle(obstacle):
 	if obstacle.is_in_group("Ring") == false:
