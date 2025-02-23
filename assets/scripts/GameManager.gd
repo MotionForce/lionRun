@@ -34,6 +34,7 @@ var initial_position = Vector2(1500, -35)
 @onready var background_music = $BackgroundMusic
 @onready var score_display = $UI/ScoreBox/Score
 @onready var gold_display = $UI/GoldBox/Gold
+@onready var time_display = $UI/TimeBox/Time
 @onready var jump1 = $UI/Jump1
 @onready var jump2 = $UI/Jump2
 @onready var death_screen = $DeathScreen
@@ -58,6 +59,7 @@ func _process(delta):
 			obstacle.queue_free()
 	score_display.text = str(player_controller.score)
 	gold_display.text = str(player_controller.gold)
+	time_display.text = get_game_time()
 	jump1.value = (player_controller.e_hold_time_1 - player_controller.time_for_fast_jump) / (player_controller.timer1.get_wait_time() - player_controller.time_for_fast_jump)
 	jump2.value = (player_controller.e_hold_time_2 - player_controller.time_for_fast_jump) / (player_controller.timer2.get_wait_time() - player_controller.time_for_fast_jump)
 

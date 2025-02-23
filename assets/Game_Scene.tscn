@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://80baen2a2jlw" path="res://assets/prefabs/Player.tscn" id="3_vtsus"]
 [ext_resource type="AudioStream" uid="uid://djq8762qg4vsq" path="res://assets/sound/Background Theme.mp3" id="4_gsbw5"]
 [ext_resource type="Texture2D" uid="uid://b63nlvdbf577w" path="res://assets/crowd.png" id="5_jvyg4"]
-[ext_resource type="LabelSettings" path="res://assets/label.tres" id="5_nwr88"]
+[ext_resource type="LabelSettings" uid="uid://cqxuyqi8wnm8m" path="res://assets/label.tres" id="5_nwr88"]
 [ext_resource type="Texture2D" uid="uid://b767plts0jf55" path="res://assets/input prompts/keyboard_space_icon.svg" id="6_c3blp"]
 [ext_resource type="Texture2D" uid="uid://dpctso4cjjmgg" path="res://assets/input prompts/keyboard_1.svg" id="7_ra71r"]
 [ext_resource type="Texture2D" uid="uid://bsk6kbp64fn5t" path="res://assets/input prompts/keyboard_3.svg" id="8_iyu05"]
@@ -76,6 +76,25 @@ offset_right = -532.0
 offset_bottom = -280.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+
+[node name="TimeBox" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 510.0
+offset_right = 590.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="UI/TimeBox"]
+layout_mode = 2
+text = "TEMPS"
+label_settings = ExtResource("5_nwr88")
+
+[node name="Time" type="Label" parent="UI/TimeBox"]
+layout_mode = 2
+label_settings = ExtResource("5_nwr88")
 
 [node name="ScoreBox" type="VBoxContainer" parent="UI"]
 layout_mode = 1
@@ -165,17 +184,15 @@ texture = ExtResource("8_iyu05")
 
 [node name="Jump1" type="ProgressBar" parent="UI"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 450.0
-offset_top = -6.0
-offset_right = 654.0
-offset_bottom = 21.0
-grow_horizontal = 2
+offset_left = 15.0
+offset_top = 295.0
+offset_right = 219.0
+offset_bottom = 322.0
 grow_vertical = 2
+rotation = -1.5708
 show_percentage = false
 
 [node name="Jump2" type="ProgressBar" parent="UI"]
@@ -185,12 +202,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 450.0
-offset_top = 27.855
-offset_right = 654.0
-offset_bottom = 54.855
+offset_left = 30.0
+offset_top = 295.0
+offset_right = 234.0
+offset_bottom = 322.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -1.5708
 show_percentage = false
 
 [node name="DeathScreen" parent="." instance=ExtResource("9_oybah")]
