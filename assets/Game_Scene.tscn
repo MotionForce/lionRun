@@ -121,6 +121,7 @@ offset_right = 52.0
 offset_bottom = 624.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/InputPrompts"]
+modulate = Color(0.643137, 0.643137, 0.643137, 1)
 layout_mode = 0
 offset_left = 74.0
 offset_top = -30.0
@@ -143,6 +144,7 @@ scale = Vector2(0.625, 0.625)
 texture = ExtResource("7_ra71r")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI/InputPrompts"]
+modulate = Color(0.643137, 0.643137, 0.643137, 1)
 layout_mode = 0
 offset_left = 32.0
 offset_top = 12.0
