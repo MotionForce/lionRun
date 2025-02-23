@@ -21,7 +21,6 @@ texture = ExtResource("2_lobsd")
 
 [node name="FloorT2" type="Sprite2D" parent="FloorT"]
 position = Vector2(2032.96, 0)
-scale = Vector2(1, 1)
 texture = ExtResource("2_lobsd")
 
 [node name="Player" parent="." instance=ExtResource("1_da4tq")]
@@ -50,8 +49,9 @@ stream = ExtResource("3_v606v")
 volume_db = -8.0
 
 [node name="Crowd" type="Sprite2D" parent="."]
-position = Vector2(-1, 151)
-scale = Vector2(0.306771, 0.304167)
+modulate = Color(1, 1, 0, 1)
+position = Vector2(0, 124.88)
+scale = Vector2(0.302, 0.299)
 texture = ExtResource("4_yulo3")
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

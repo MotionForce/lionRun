@@ -24,7 +24,7 @@ var obstacle_prefab_path = [
 var cannon_ball_prefab_path = "res://assets/prefabs/Cannon_ball.tscn"
 
 var ground_global_y = 0
-var initial_position = Vector2(1500, 0)
+var initial_position = Vector2(1500, -35)
 
 @onready var player_controller = $Player/CharacterBody2D
 @onready var obstacle_parent = $Obstacles
@@ -43,7 +43,8 @@ func _ready():
 func _process(delta):
 	determine_spawn()
 	floor_i.global_position.x += obstacle_move_speed * delta
-	print(floor_i.global_position.x)
+	#print(floor_i.global_position.x)
+	print(ground_global_y)
 	if floor_i.global_position.x < -1150:
 		floor_i.global_position.x = 3.75
 	for obstacle in obstacle_parent.get_children():
