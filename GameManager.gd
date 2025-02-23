@@ -15,6 +15,7 @@ var distance_to_spawn = 0;
 var random = RandomNumberGenerator.new()
 
 var game_time = 0
+var obstacle_queued = 0
 
 var obstacle_prefab_path = [
 	"res://assets/prefabs/Cannon.tscn",
@@ -32,12 +33,12 @@ var initial_position = Vector2(1500, -35)
 @onready var obstacle_prefab = load("res://Obstacle.tscn")
 @onready var ground = $Ground
 @onready var floor_i = $FloorT
+@onready var background_music = $BackgroundMusic
 
 func _ready():
 	obstacle_move_speed = INITIAL_MOVE_SPEED
 	determine_ground_y()
 	determine_next_obstacle()
-	$AudioStreamPlayer2D.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -51,6 +52,7 @@ func _process(delta):
 		obstacle.global_position.x += obstacle_move_speed * delta
 		if obstacle.global_position.x < -700:
 			get_node("Player/CharacterBody2D").on_queue_free_obstacle(obstacle)
+			obstacle_queued += 1
 			obstacle.queue_free()
 
 func update_speed_progression():
@@ -121,7 +123,7 @@ func determine_if_stick():
 	var smallest_height = 5000
 	for cannon_ball in previous_cannon_balls_stack:
 		var minimum_jump_distance = cannon_ball.get_node("Sprite2D/Area2D/CollisionShape2D").global_position.distance_to(cannon_ball.get_node("Sprite2D/Minimum Jump Distance").global_position)
-		var cannon_ball_height = ground_global_y - cannon_ball.get_node("Sprite2D").global_position.y + minimum_jump_distance
+		var cannon_ball_height = ground_global_y - cannon_ball.get_node("Sprite2D").global_position.y - (cannon_ball.get_node("Sprite2D").get_offset().y * cannon_ball.get_node("Sprite2D").scale.y) + minimum_jump_distance
 		if cannon_ball_height < smallest_height:
 			smallest_height = cannon_ball_height
 	if obstacle_minimum_jump > smallest_height:
@@ -274,3 +276,6 @@ func get_game_time():
 	var minutes = floori(float(game_time - hours * 3600) / 60)
 	var seconds = game_time - (hours * 3600) - (minutes * 60)
 	#print(hours, ":", minutes, ":", seconds, " || ", game_time)
+
+func restart_background_music():
+	background_music.play()

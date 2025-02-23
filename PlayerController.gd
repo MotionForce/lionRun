@@ -30,6 +30,7 @@ func _ready():
 	timer2.wait_time = timer_wait_time
 
 func _physics_process(delta):
+	calculate_score()
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		animation.stop()
@@ -104,7 +105,8 @@ func change_gold_amount(amount):
 		on_player_reach_0_gold()
 
 func on_player_reach_0_gold():
-	print ("player died")
+	#print ("player died")
+	pass
 
 func on_queue_free_obstacle(obstacle):
 	if obstacle.is_in_group("Ring") == false:
@@ -132,6 +134,9 @@ func get_speed_progression():
 func get_game_time():
 	return get_parent().get_parent().game_time
 
+func obstacle_queued():
+	return get_parent().get_parent().obstacle_queued
+
 func play_ring_sound():
 	var ring_audio = get_node("RingAudio")
 	ring_audio.volume_db = randf_range(-5, 5)
@@ -143,3 +148,10 @@ func play_obstacle_sound():
 	ring_audio.volume_db = randf_range(-5, 5)
 	ring_audio.pitch_scale = randf_range(0.5, 1.5)
 	ring_audio.play()
+
+func calculate_score():
+	var score = obstacle_queued() * 100
+	score += max_gold_acquired
+
+func spawn_hit_particles(amount):
+	pass

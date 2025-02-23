@@ -44,9 +44,10 @@ shape = SubResource("RectangleShape2D_4e0jd")
 [node name="GameTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_v606v")
 volume_db = -8.0
+autoplay = true
 
 [node name="Crowd" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 0, 1)
@@ -55,3 +56,4 @@ scale = Vector2(0.302, 0.299)
 texture = ExtResource("4_yulo3")
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="finished" from="BackgroundMusic" to="." method="restart_background_music"]
