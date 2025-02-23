@@ -22,13 +22,16 @@ var timer_wait_time = 1.25
 @onready var timer1 = $Timer1
 @onready var timer2 = $Timer2
 @onready var animation = $AnimatedSprite2D
+var particle_parent
 
 var score = 0
 var hold_time = 0
 var e_hold_time = 0
 
+var particle_prefab_path = load("res://assets/prefabs/Particle.tscn")
 
 func _ready():
+	particle_parent = get_parent().get_parent().get_node("Particules")
 	gold = INITIAL_GOLD
 	max_gold_acquired = INITIAL_GOLD
 	timer1.wait_time = timer_wait_time
@@ -67,7 +70,7 @@ func _physics_process(delta):
 			var height = (hold_time - time_for_fast_jump) / (timer2.get_wait_time() - time_for_fast_jump) * (MAX_JUMP_HEIGHT - MIN_JUMP_HEIGHT) + MIN_JUMP_HEIGHT
 			velocity.y = sqrt(2*height/gravity) * -gravity
 		timer2.stop()
-
+	
 	e_hold_time = timer1.get_wait_time() - timer1.get_time_left()
 
 	if not press:
@@ -95,7 +98,9 @@ func on_obstacle_check_area_entered(area):
 func on_general_collisision():
 	play_obstacle_sound()
 	collision_cost_stack += 1 * floor(1 + get_game_time() / 90)
-	change_gold_amount(calculate_collision_cost())
+	var gold_amount_change = calculate_collision_cost()
+	change_gold_amount(gold_amount_change)
+	spawn_hit_particles(gold_amount_change)
 
 func on_ring_collision(area):
 	play_ring_sound()
@@ -107,7 +112,9 @@ func on_ring_collision(area):
 	collision_cost_stack -= 1 * floor(1 + get_game_time() / 180)
 	if collision_cost_stack < 0:
 		collision_cost_stack = 0
-	change_gold_amount(calculate_gold_reward())
+	var gold_amount_change = calculate_gold_reward()
+	change_gold_amount(gold_amount_change)
+	spawn_hit_particles(gold_amount_change)
 
 func change_gold_amount(amount):
 	gold += amount
@@ -165,6 +172,14 @@ func calculate_score():
 	score = obstacle_queued() * 100
 	score += max_gold_acquired
 
-
 func spawn_hit_particles(amount):
-	pass
+	var particle = particle_prefab_path.instantiate()
+	particle_parent.add_child(particle)
+	particle.global_position = global_position
+	var gradient_ramp = Gradient.new()
+	if amount > 0:
+		gradient_ramp = load("res://assets/particle/RingParticleColorRamp.tres")
+	else:
+		gradient_ramp = load("res://assets/particle/ObstacleParticleColorRamp.tres")
+	particle.get_node("CPUParticles2D").set_color_ramp(gradient_ramp)
+	particle.get_node("TextParticle/Label").text = str(amount)

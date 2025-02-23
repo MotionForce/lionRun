@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://80baen2a2jlw"]
 
-[ext_resource type="Script" path="res://PlayerController.gd" id="1_ifnw3"]
+[ext_resource type="Script" path="res://assets/scripts/PlayerController.gd" id="1_ifnw3"]
 [ext_resource type="Texture2D" uid="uid://b43kaqsymbyui" path="res://assets/lion/lion_idle.png" id="2_cdiq8"]
 [ext_resource type="Texture2D" uid="uid://c7jdemc8824sw" path="res://assets/lion/lion_runing_0001.png" id="3_lopi0"]
 [ext_resource type="Texture2D" uid="uid://d3m1ue82dpooi" path="res://assets/lion/lion_runing_0002.png" id="4_u7xdq"]
 [ext_resource type="Texture2D" uid="uid://cn2na41727uhk" path="res://assets/lion/lion_runing_0003.png" id="5_fm5xs"]
 [ext_resource type="Texture2D" uid="uid://bx2smafi6p43a" path="res://assets/lion/lion_runing_0004.png" id="6_3rmbd"]
-[ext_resource type="AudioStream" uid="uid://c2y8lsgihqnj2" path="res://pickupCoin.wav" id="7_f1few"]
+[ext_resource type="AudioStream" uid="uid://c2y8lsgihqnj2" path="res://assets/sound/CollisionSFX.wav" id="7_srksm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2jspf"]
 animations = [{
@@ -86,10 +86,10 @@ wait_time = 5.0
 wait_time = 5.0
 
 [node name="RingAudio" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
-stream = ExtResource("7_f1few")
+stream = ExtResource("7_srksm")
 
 [node name="ObstacleAudio" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
-stream = ExtResource("7_f1few")
+stream = ExtResource("7_srksm")
 
 [connection signal="area_entered" from="CharacterBody2D/ObstacleCheck" to="CharacterBody2D" method="on_obstacle_check_area_entered"]
 [connection signal="timeout" from="CharacterBody2D/Timer1" to="CharacterBody2D" method="on_timer1_timeout"]

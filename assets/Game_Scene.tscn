@@ -1,13 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bexiup8k3j6t6"]
+[gd_scene load_steps=13 format=3 uid="uid://dve7ju37uf7li"]
 
-[ext_resource type="PackedScene" uid="uid://80baen2a2jlw" path="res://assets/prefabs/Player.tscn" id="1_da4tq"]
-[ext_resource type="Script" path="res://GameManager.gd" id="1_n5c85"]
-[ext_resource type="AudioStream" uid="uid://djq8762qg4vsq" path="res://Background Theme.mp3" id="3_v606v"]
-[ext_resource type="Texture2D" uid="uid://b63nlvdbf577w" path="res://assets/crowd.png" id="4_yulo3"]
-[ext_resource type="LabelSettings" uid="uid://bg47ym4ympp1e" path="res://assets/label.tres" id="5_chfod"]
-[ext_resource type="Texture2D" uid="uid://b767plts0jf55" path="res://assets/input prompts/keyboard_space_icon.svg" id="6_u35hj"]
-[ext_resource type="Texture2D" uid="uid://dpctso4cjjmgg" path="res://assets/input prompts/keyboard_1.svg" id="7_i3l5m"]
-[ext_resource type="Texture2D" uid="uid://bsk6kbp64fn5t" path="res://assets/input prompts/keyboard_3.svg" id="8_bqj77"]
+[ext_resource type="Script" path="res://assets/scripts/GameManager.gd" id="1_mkis0"]
+[ext_resource type="PackedScene" uid="uid://80baen2a2jlw" path="res://assets/prefabs/Player.tscn" id="3_vtsus"]
+[ext_resource type="AudioStream" uid="uid://djq8762qg4vsq" path="res://assets/sound/Background Theme.mp3" id="4_gsbw5"]
+[ext_resource type="Texture2D" uid="uid://b63nlvdbf577w" path="res://assets/crowd.png" id="5_jvyg4"]
+[ext_resource type="LabelSettings" path="res://assets/label.tres" id="5_nwr88"]
+[ext_resource type="Texture2D" uid="uid://b767plts0jf55" path="res://assets/input prompts/keyboard_space_icon.svg" id="6_c3blp"]
+[ext_resource type="Texture2D" uid="uid://dpctso4cjjmgg" path="res://assets/input prompts/keyboard_1.svg" id="7_ra71r"]
+[ext_resource type="Texture2D" uid="uid://bsk6kbp64fn5t" path="res://assets/input prompts/keyboard_3.svg" id="8_iyu05"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_soshn"]
 
@@ -21,11 +21,11 @@ gradient = SubResource("Gradient_vo7s0")
 size = Vector2(1155, 175)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_n5c85")
+script = ExtResource("1_mkis0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("1_da4tq")]
+[node name="Player" parent="." instance=ExtResource("3_vtsus")]
 position = Vector2(-500, 80)
 
 [node name="Preloaded Obstacles" type="Node2D" parent="."]
@@ -53,7 +53,7 @@ shape = SubResource("RectangleShape2D_4e0jd")
 autostart = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_v606v")
+stream = ExtResource("4_gsbw5")
 volume_db = -8.0
 autoplay = true
 
@@ -61,7 +61,9 @@ autoplay = true
 modulate = Color(1, 1, 0, 1)
 position = Vector2(0, 124.88)
 scale = Vector2(0.302, 0.299)
-texture = ExtResource("4_yulo3")
+texture = ExtResource("5_jvyg4")
+
+[node name="Particules" type="Node2D" parent="."]
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -82,11 +84,11 @@ offset_bottom = 50.0
 [node name="Label" type="Label" parent="UI/ScoreBox"]
 layout_mode = 2
 text = "SCORE"
-label_settings = ExtResource("5_chfod")
+label_settings = ExtResource("5_nwr88")
 
 [node name="Score" type="Label" parent="UI/ScoreBox"]
 layout_mode = 2
-label_settings = ExtResource("5_chfod")
+label_settings = ExtResource("5_nwr88")
 
 [node name="GoldBox" type="VBoxContainer" parent="UI"]
 layout_mode = 1
@@ -103,12 +105,12 @@ size_flags_vertical = 8
 [node name="Label" type="Label" parent="UI/GoldBox"]
 layout_mode = 2
 text = "OR"
-label_settings = ExtResource("5_chfod")
+label_settings = ExtResource("5_nwr88")
 horizontal_alignment = 2
 
 [node name="Gold" type="Label" parent="UI/GoldBox"]
 layout_mode = 2
-label_settings = ExtResource("5_chfod")
+label_settings = ExtResource("5_nwr88")
 horizontal_alignment = 2
 
 [node name="InputPrompts" type="Control" parent="UI"]
@@ -128,19 +130,20 @@ offset_bottom = 10.0
 [node name="KeyboardSpaceIcon" type="Sprite2D" parent="UI/InputPrompts/HBoxContainer"]
 position = Vector2(-64, 20)
 scale = Vector2(0.625, 0.625)
-texture = ExtResource("6_u35hj")
+texture = ExtResource("6_c3blp")
 
 [node name="Label" type="Label" parent="UI/InputPrompts/HBoxContainer"]
 layout_mode = 2
 text = "SAUTER"
-label_settings = ExtResource("5_chfod")
+label_settings = ExtResource("5_nwr88")
 
 [node name="Keyboard1" type="Sprite2D" parent="UI/InputPrompts/HBoxContainer"]
 position = Vector2(-22.9999, 20)
 scale = Vector2(0.625, 0.625)
-texture = ExtResource("7_i3l5m")
+texture = ExtResource("7_ra71r")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI/InputPrompts"]
+layout_mode = 0
 offset_left = 32.0
 offset_top = 12.0
 offset_right = 128.0
@@ -149,12 +152,12 @@ offset_bottom = 52.0
 [node name="Label" type="Label" parent="UI/InputPrompts/HBoxContainer2"]
 layout_mode = 2
 text = "SAUTER"
-label_settings = ExtResource("5_chfod")
+label_settings = ExtResource("5_nwr88")
 
 [node name="Keyboard3" type="Sprite2D" parent="UI/InputPrompts/HBoxContainer2"]
 position = Vector2(-22, 19)
 scale = Vector2(0.624999, 0.624999)
-texture = ExtResource("8_bqj77")
+texture = ExtResource("8_iyu05")
 
 [node name="Jump1" type="ProgressBar" parent="UI"]
 layout_mode = 1

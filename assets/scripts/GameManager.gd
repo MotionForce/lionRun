@@ -30,7 +30,6 @@ var initial_position = Vector2(1500, -35)
 @onready var player_controller = $Player/CharacterBody2D
 @onready var obstacle_parent = $Obstacles
 @onready var obstacle_preload = $"Preloaded Obstacles"
-@onready var obstacle_prefab = load("res://Obstacle.tscn")
 @onready var ground = $Ground
 @onready var background_music = $BackgroundMusic
 @onready var score_display = $UI/ScoreBox/Score
@@ -48,7 +47,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	determine_spawn()
-	print(ground_global_y)
 	for obstacle in obstacle_parent.get_children():
 		obstacle.global_position.x += obstacle_move_speed * delta
 		if obstacle.global_position.x < -700:

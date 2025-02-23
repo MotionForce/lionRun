@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c2y8lsgihqnj2"
-path="res://.godot/imported/pickupCoin.wav-be680aecee3c783d1a9d6ac216aac9ba.sample"
+path="res://.godot/imported/CollisionSFX.wav-a1c5855432f3979aaf9508b46ca59c83.sample"
 
 [deps]
 
-source_file="res://pickupCoin.wav"
-dest_files=["res://.godot/imported/pickupCoin.wav-be680aecee3c783d1a9d6ac216aac9ba.sample"]
+source_file="res://assets/sound/CollisionSFX.wav"
+dest_files=["res://.godot/imported/CollisionSFX.wav-a1c5855432f3979aaf9508b46ca59c83.sample"]
 
 [params]
 

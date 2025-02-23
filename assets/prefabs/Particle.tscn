@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3384dv6cx627"]
+
+[ext_resource type="Script" path="res://assets/scripts/Particle.gd" id="1_jshpl"]
+[ext_resource type="Gradient" uid="uid://dyea6coem42o3" path="res://assets/particle/RingParticleColorRamp.tres" id="2_qre6m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bdgfv"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_u8k1x"]
+viewport_path = NodePath("TextParticle")
+
+[sub_resource type="Curve" id="Curve_52m5p"]
+min_value = 0.25
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 0.252747), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Particle" type="Node2D"]
+script = ExtResource("1_jshpl")
+
+[node name="TextParticle" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(256, 256)
+
+[node name="Label" type="Label" parent="TextParticle"]
+custom_minimum_size = Vector2(256, 256)
+offset_right = 40.0
+offset_bottom = 23.0
+text = "100"
+label_settings = SubResource("LabelSettings_bdgfv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 1
+one_shot = true
+texture = SubResource("ViewportTexture_u8k1x")
+emission_shape = 1
+emission_sphere_radius = 25.0
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 50)
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+angular_velocity_min = 10.0
+angular_velocity_max = 25.0
+damping_max = 20.0
+scale_amount_curve = SubResource("Curve_52m5p")
+color_ramp = ExtResource("2_qre6m")
+hue_variation_min = 1.0
+hue_variation_max = 1.0
+
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]
