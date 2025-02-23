@@ -32,28 +32,32 @@ var initial_position = Vector2(1500, -35)
 @onready var obstacle_preload = $"Preloaded Obstacles"
 @onready var obstacle_prefab = load("res://Obstacle.tscn")
 @onready var ground = $Ground
-@onready var floor_i = $FloorT
 @onready var background_music = $BackgroundMusic
+@onready var score_display = $UI/ScoreBox/Score
+@onready var gold_display = $UI/GoldBox/Gold
+@onready var jump1 = $UI/Jump1
+@onready var jump2 = $UI/Jump2
+
 
 func _ready():
 	obstacle_move_speed = INITIAL_MOVE_SPEED
 	determine_ground_y()
 	determine_next_obstacle()
+	jump1.max_value = (player_controller.timer1.get_wait_time() - player_controller.time_for_fast_jump)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	determine_spawn()
-	floor_i.global_position.x += obstacle_move_speed * delta
-	#print(floor_i.global_position.x)
 	print(ground_global_y)
-	if floor_i.global_position.x < -1150:
-		floor_i.global_position.x = 3.75
 	for obstacle in obstacle_parent.get_children():
 		obstacle.global_position.x += obstacle_move_speed * delta
 		if obstacle.global_position.x < -700:
 			get_node("Player/CharacterBody2D").on_queue_free_obstacle(obstacle)
 			obstacle_queued += 1
 			obstacle.queue_free()
+	score_display.text = str(player_controller.score)
+	gold_display.text = str(player_controller.gold)
+	jump1.value = (player_controller.e_hold_time - player_controller.time_for_fast_jump) / (player_controller.timer1.get_wait_time() - player_controller.time_for_fast_jump)
 
 func update_speed_progression():
 	speed_progression = float(obstacle_move_speed - INITIAL_MOVE_SPEED) / float(OBSTACLE_MAX_SPEED - INITIAL_MOVE_SPEED)

@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://bexiup8k3j6t6"]
+
+[ext_resource type="PackedScene" uid="uid://80baen2a2jlw" path="res://assets/prefabs/Player.tscn" id="1_da4tq"]
+[ext_resource type="Script" path="res://GameManager.gd" id="1_n5c85"]
+[ext_resource type="AudioStream" uid="uid://djq8762qg4vsq" path="res://Background Theme.mp3" id="3_v606v"]
+[ext_resource type="Texture2D" uid="uid://b63nlvdbf577w" path="res://assets/crowd.png" id="4_yulo3"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_soshn"]
+
+[sub_resource type="Gradient" id="Gradient_vo7s0"]
+colors = PackedColorArray(0.813255, 0.578957, 0.335423, 1, 0.811765, 0.580392, 0.337255, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x6ft0"]
+gradient = SubResource("Gradient_vo7s0")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4e0jd"]
+size = Vector2(1155, 175)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_n5c85")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(3.05176e-05, 200)
+scale = Vector2(1152, 176)
+mesh = SubResource("QuadMesh_soshn")
+texture = SubResource("GradientTexture1D_x6ft0")
+
+[node name="Player" parent="." instance=ExtResource("1_da4tq")]
+position = Vector2(-500, 80)
+
+[node name="Preloaded Obstacles" type="Node2D" parent="."]
+position = Vector2(0, -35)
+
+[node name="Obstacles" type="Node2D" parent="."]
+position = Vector2(0, -35)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(500, -35)
+scale = Vector2(2, 1)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(0, 235.75)
+shape = SubResource("RectangleShape2D_4e0jd")
+
+[node name="GameTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_v606v")
+volume_db = -8.0
+autoplay = true
+
+[node name="Crowd" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(0, 124.88)
+scale = Vector2(0.302, 0.299)
+texture = ExtResource("4_yulo3")
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="finished" from="BackgroundMusic" to="." method="restart_background_music"]

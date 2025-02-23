@@ -23,6 +23,11 @@ var timer_wait_time = 1.25
 @onready var timer2 = $Timer2
 @onready var animation = $AnimatedSprite2D
 
+var score = 0
+var hold_time = 0
+var e_hold_time = 0
+
+
 func _ready():
 	gold = INITIAL_GOLD
 	max_gold_acquired = INITIAL_GOLD
@@ -37,6 +42,8 @@ func _physics_process(delta):
 	else:
 		animation.play()
 
+	var press = Input.is_action_pressed("Jump 1") or Input.is_action_pressed("Jump 2")
+
 	if Input.is_action_just_pressed("Jump 1"):
 		timer1.start()
 	
@@ -44,7 +51,7 @@ func _physics_process(delta):
 		timer2.start()
 	
 	if Input.is_action_just_released("Jump 1") and can_jump():
-		var hold_time = timer1.get_wait_time() - timer1.get_time_left()
+		hold_time = timer1.get_wait_time() - timer1.get_time_left()
 		if hold_time <= time_for_fast_jump:
 			velocity.y = sqrt(2*MIN_JUMP_HEIGHT/gravity) * -gravity
 		else:
@@ -53,13 +60,18 @@ func _physics_process(delta):
 		timer1.stop()
 	
 	if Input.is_action_just_released("Jump 2") and can_jump():
-		var hold_time = timer2.get_wait_time() - timer2.get_time_left()
+		hold_time = timer2.get_wait_time() - timer2.get_time_left()
 		if hold_time <= time_for_fast_jump:
 			velocity.y = sqrt(2*MIN_JUMP_HEIGHT/gravity) * -gravity
 		else:
 			var height = (hold_time - time_for_fast_jump) / (timer2.get_wait_time() - time_for_fast_jump) * (MAX_JUMP_HEIGHT - MIN_JUMP_HEIGHT) + MIN_JUMP_HEIGHT
 			velocity.y = sqrt(2*height/gravity) * -gravity
 		timer2.stop()
+
+	e_hold_time = timer1.get_wait_time() - timer1.get_time_left()
+
+	if not press:
+		e_hold_time = 0
 	
 	move_and_slide()
 
@@ -150,8 +162,9 @@ func play_obstacle_sound():
 	ring_audio.play()
 
 func calculate_score():
-	var score = obstacle_queued() * 100
+	score = obstacle_queued() * 100
 	score += max_gold_acquired
+
 
 func spawn_hit_particles(amount):
 	pass
