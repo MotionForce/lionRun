@@ -38,6 +38,7 @@ var initial_position = Vector2(1500, -35)
 @onready var jump1 = $UI/Jump1
 @onready var jump2 = $UI/Jump2
 @onready var death_screen = $DeathScreen
+@onready var scaffold = $Scaffold
 
 
 func _ready():
@@ -51,6 +52,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	determine_spawn()
+	scaffold.global_position.x += obstacle_move_speed * delta / 3
+	if scaffold.global_position.x < -1152:
+		scaffold.global_position.x = 0
 	for obstacle in obstacle_parent.get_children():
 		obstacle.global_position.x += obstacle_move_speed * delta
 		if obstacle.global_position.x < -700:

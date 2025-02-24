@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://dve7ju37uf7li"]
+[gd_scene load_steps=19 format=3 uid="uid://dve7ju37uf7li"]
 
 [ext_resource type="Script" path="res://assets/scripts/GameManager.gd" id="1_mkis0"]
+[ext_resource type="Texture2D" uid="uid://bhgiercnocyl8" path="res://assets/lamp.png" id="3_lx73w"]
 [ext_resource type="PackedScene" uid="uid://80baen2a2jlw" path="res://assets/prefabs/Player.tscn" id="3_vtsus"]
 [ext_resource type="AudioStream" uid="uid://djq8762qg4vsq" path="res://assets/sound/Background Theme.mp3" id="4_gsbw5"]
 [ext_resource type="Script" path="res://assets/scripts/BackgroundMusic.gd" id="4_td18p"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://rfkxpunut1x4" path="res://assets/input prompts/keyboard_z.svg" id="7_15ut4"]
 [ext_resource type="Texture2D" uid="uid://d0d7o2627hreh" path="res://assets/input prompts/keyboard_x.svg" id="8_dexpt"]
 [ext_resource type="PackedScene" uid="uid://tb4iilejyldl" path="res://assets/death_screen.tscn" id="9_oybah"]
+[ext_resource type="Texture2D" uid="uid://bml112dudaey7" path="res://assets/bg.png" id="10_yp3pq"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_soshn"]
 
@@ -21,10 +23,258 @@ gradient = SubResource("Gradient_kxh2y")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4e0jd"]
 size = Vector2(1155, 175)
 
+[sub_resource type="Animation" id="Animation_4t682"]
+resource_name = "light"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scaffold/Lamp:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-684.445, -305.581), Vector2(-584.889, -321.771), Vector2(-684.445, -305.581)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scaffold/Lamp:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.371755, -0.453786, 0.371755]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scaffold/Lamp3:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(269.125, -321.718), Vector2(368.681, -341.391), Vector2(269.125, -319.248)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Scaffold/Lamp3:rotation")
+tracks/3/interp = 4
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.417703, 5.8294, 0.417703]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Scaffold/Lamp2:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1372.44, -309.628), Vector2(1472, -321.771), Vector2(1372.44, -309.628)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Scaffold/Lamp2:rotation")
+tracks/5/interp = 4
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.371755, 5.8294, 0.371755]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Scaffold/Lamp4:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2326.01, -309.628), Vector2(2425.57, -341.391), Vector2(2326.01, -309.628)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Scaffold/Lamp4:rotation")
+tracks/7/interp = 4
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.417703, 5.8294, 0.417703]
+}
+
+[sub_resource type="Animation" id="Animation_i3ima"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scaffold/Lamp:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-656, -295.462)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scaffold/Lamp:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scaffold/Lamp3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(269.125, -307.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Scaffold/Lamp3:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.417703]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Scaffold/Lamp2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1372.44, -309.628)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Scaffold/Lamp2:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.371755]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Scaffold/Lamp4:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2305.78, -309.628)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Scaffold/Lamp4:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.417703]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mfssw"]
+_data = {
+"RESET": SubResource("Animation_i3ima"),
+"light": SubResource("Animation_4t682")
+}
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_mkis0")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 580.0
+offset_bottom = 304.0
+color = Color(0.447831, 0.379494, 0.364163, 1)
+
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Scaffold" type="Sprite2D" parent="."]
+position = Vector2(1.33514e-05, -71)
+scale = Vector2(0.5625, 0.494141)
+texture = ExtResource("10_yp3pq")
+
+[node name="Bg2" type="Sprite2D" parent="Scaffold"]
+position = Vector2(2048, -0.113327)
+scale = Vector2(1.00089, 1.00022)
+texture = ExtResource("10_yp3pq")
+
+[node name="Lamp" type="Sprite2D" parent="Scaffold"]
+position = Vector2(-656, -295.462)
+scale = Vector2(0.288194, 0.328063)
+texture = ExtResource("3_lx73w")
+
+[node name="Lamp2" type="Sprite2D" parent="Scaffold"]
+position = Vector2(1372.44, -309.628)
+rotation = 0.371755
+scale = Vector2(0.288194, 0.328063)
+texture = ExtResource("3_lx73w")
+
+[node name="Lamp3" type="Sprite2D" parent="Scaffold"]
+position = Vector2(269.125, -307.5)
+rotation = 0.417703
+scale = Vector2(0.24376, 0.305176)
+skew = -0.0877234
+texture = ExtResource("3_lx73w")
+
+[node name="Lamp4" type="Sprite2D" parent="Scaffold"]
+position = Vector2(2305.78, -309.628)
+rotation = 0.417703
+scale = Vector2(0.24376, 0.305176)
+skew = -0.0877234
+texture = ExtResource("3_lx73w")
 
 [node name="Player" parent="." instance=ExtResource("3_vtsus")]
 z_index = 1
@@ -212,6 +462,12 @@ rotation = -1.5708
 show_percentage = false
 
 [node name="DeathScreen" parent="." instance=ExtResource("9_oybah")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mfssw")
+}
+autoplay = "light"
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="restart_background_music"]

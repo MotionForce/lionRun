@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="LionRun"
+config/name="Cirque du Lion"
 config/version="0.1.0"
 run/main_scene="res://assets/intro.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
