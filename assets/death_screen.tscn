@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://tb4iilejyldl"]
 
 [ext_resource type="FontFile" uid="uid://cdvangecxrsrq" path="res://assets/fonts/handwritten.otf" id="1_0pmrp"]
-[ext_resource type="Script" path="res://assets/DeathScreenController.gd" id="1_fco7w"]
+[ext_resource type="Script" path="res://assets/scripts/DeathScreenController.gd" id="1_fco7w"]
 [ext_resource type="AudioStream" uid="uid://dilwlcxe675co" path="res://assets/sound/GameOverSFX.wav" id="2_8yjbp"]
 [ext_resource type="Script" path="res://assets/scripts/GameOverSound.gd" id="3_k5jhm"]
 [ext_resource type="AudioStream" uid="uid://bl2fllgm2td2e" path="res://assets/sound/OnClickSFX.wav" id="4_ywa87"]
