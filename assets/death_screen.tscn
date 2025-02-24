@@ -66,8 +66,9 @@ offset_top = 15.0
 offset_right = 20.0
 offset_bottom = 32.0
 grow_horizontal = 2
-text = "GAME OVER"
+text = "Fin de la partie"
 label_settings = SubResource("LabelSettings_3dwyl")
+uppercase = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
