@@ -291,11 +291,9 @@ func get_game_time():
 		seconds_string = "0" + str(seconds)
 	return str(hours) + ":" + minutes_string + ":" + seconds_string
 
-func restart_background_music():
-	background_music.play()
-
 func end_game(gold, score):
 	get_tree().paused = true
+	death_screen.get_node("GameOverSound").start_sound()
 	var values_node = death_screen.get_node("Panel/HBoxContainer/Values")
 	values_node.get_node("Time").text = get_game_time()
 	values_node.get_node("Score").text = str(score) + " "

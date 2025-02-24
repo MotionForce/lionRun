@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dve7ju37uf7li"]
+[gd_scene load_steps=14 format=3 uid="uid://dve7ju37uf7li"]
 
 [ext_resource type="Script" path="res://assets/scripts/GameManager.gd" id="1_mkis0"]
 [ext_resource type="PackedScene" uid="uid://80baen2a2jlw" path="res://assets/prefabs/Player.tscn" id="3_vtsus"]
 [ext_resource type="AudioStream" uid="uid://djq8762qg4vsq" path="res://assets/sound/Background Theme.mp3" id="4_gsbw5"]
-[ext_resource type="Script" path="res://assets/scripts/BackgroundMusic.gd" id="4_td18p"]
 [ext_resource type="Texture2D" uid="uid://b63nlvdbf577w" path="res://assets/crowd.png" id="5_jvyg4"]
 [ext_resource type="LabelSettings" uid="uid://cqxuyqi8wnm8m" path="res://assets/label.tres" id="5_nwr88"]
 [ext_resource type="Texture2D" uid="uid://b767plts0jf55" path="res://assets/input prompts/keyboard_space_icon.svg" id="6_c3blp"]
@@ -58,9 +57,8 @@ autostart = true
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
 stream = ExtResource("4_gsbw5")
-volume_db = -8.0
+volume_db = -20.0
 autoplay = true
-script = ExtResource("4_td18p")
 
 [node name="Crowd" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 0, 1)
@@ -217,4 +215,4 @@ show_percentage = false
 [node name="DeathScreen" parent="." instance=ExtResource("9_oybah")]
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
-[connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="restart_background_music"]
+[connection signal="finished" from="BackgroundMusic" to="." method="restart_background_music"]

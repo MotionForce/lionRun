@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://tb4iilejyldl"]
+[gd_scene load_steps=9 format=3 uid="uid://tb4iilejyldl"]
 
 [ext_resource type="FontFile" uid="uid://cdvangecxrsrq" path="res://assets/fonts/handwritten.otf" id="1_0pmrp"]
+[ext_resource type="AudioStream" uid="uid://dilwlcxe675co" path="res://assets/sound/brass-fail-10-b-207137.wav" id="2_8yjbp"]
+[ext_resource type="Script" path="res://assets/scripts/GameOverSound.gd" id="3_k5jhm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3dwyl"]
 font = ExtResource("1_0pmrp")
@@ -193,3 +195,9 @@ text = "MENU"
 label_settings = SubResource("LabelSettings_goktu")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+process_mode = 2
+stream = ExtResource("2_8yjbp")
+volume_db = -24.0
+script = ExtResource("3_k5jhm")
