@@ -60,7 +60,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.795, 0.795), Vector2(0.834, 0.834), Vector2(0.795, 0.795)]
+"values": [Vector2(0.795, 0.795), Vector2(0.89, 0.89), Vector2(0.795, 0.795)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -143,9 +143,10 @@ color = Color(0.169245, 0.169245, 0.169245, 1)
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.326134
-anchor_right = 1.03189
-anchor_bottom = 0.398665
+anchor_left = -0.000868052
+anchor_top = 0.310702
+anchor_right = 0.965046
+anchor_bottom = 0.383233
 offset_top = 51.6649
 offset_right = -8.73315
 offset_bottom = 169.665

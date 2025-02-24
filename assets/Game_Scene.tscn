@@ -351,9 +351,9 @@ label_settings = ExtResource("5_nwr88")
 
 [node name="ScoreBox" type="VBoxContainer" parent="UI"]
 layout_mode = 1
-offset_left = 1024.0
+offset_left = 737.355
 offset_top = 4.0
-offset_right = 1139.0
+offset_right = 1137.36
 offset_bottom = 121.0
 
 [node name="Label" type="Label" parent="UI/ScoreBox"]
@@ -374,8 +374,8 @@ anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -38.0
 offset_top = 3.0
-offset_right = 42.0
-offset_bottom = 53.0
+offset_right = 362.0
+offset_bottom = 55.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
