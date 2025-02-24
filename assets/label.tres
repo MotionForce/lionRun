@@ -3,5 +3,9 @@
 [ext_resource type="FontFile" uid="uid://cdvangecxrsrq" path="res://assets/fonts/handwritten.otf" id="1_innva"]
 
 [resource]
+line_spacing = 3.22
 font = ExtResource("1_innva")
+font_size = 23
 outline_size = 6
+shadow_size = 0
+shadow_color = Color(0.788235, 0.466667, 0.164706, 0.843137)

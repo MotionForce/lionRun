@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dve7ju37uf7li"]
+[gd_scene load_steps=14 format=3 uid="uid://dve7ju37uf7li"]
 
 [ext_resource type="Script" path="res://assets/scripts/GameManager.gd" id="1_mkis0"]
 [ext_resource type="PackedScene" uid="uid://80baen2a2jlw" path="res://assets/prefabs/Player.tscn" id="3_vtsus"]
@@ -6,18 +6,17 @@
 [ext_resource type="Script" path="res://assets/scripts/BackgroundMusic.gd" id="4_td18p"]
 [ext_resource type="Texture2D" uid="uid://b63nlvdbf577w" path="res://assets/crowd.png" id="5_jvyg4"]
 [ext_resource type="LabelSettings" uid="uid://cqxuyqi8wnm8m" path="res://assets/label.tres" id="5_nwr88"]
-[ext_resource type="Texture2D" uid="uid://b767plts0jf55" path="res://assets/input prompts/keyboard_space_icon.svg" id="6_c3blp"]
-[ext_resource type="Texture2D" uid="uid://dpctso4cjjmgg" path="res://assets/input prompts/keyboard_1.svg" id="7_ra71r"]
-[ext_resource type="Texture2D" uid="uid://bsk6kbp64fn5t" path="res://assets/input prompts/keyboard_3.svg" id="8_iyu05"]
+[ext_resource type="Texture2D" uid="uid://rfkxpunut1x4" path="res://assets/input prompts/keyboard_z.svg" id="7_15ut4"]
+[ext_resource type="Texture2D" uid="uid://d0d7o2627hreh" path="res://assets/input prompts/keyboard_x.svg" id="8_dexpt"]
 [ext_resource type="PackedScene" uid="uid://tb4iilejyldl" path="res://assets/death_screen.tscn" id="9_oybah"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_soshn"]
 
-[sub_resource type="Gradient" id="Gradient_vo7s0"]
+[sub_resource type="Gradient" id="Gradient_kxh2y"]
 colors = PackedColorArray(0.813255, 0.578957, 0.335423, 1, 0.811765, 0.580392, 0.337255, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_x6ft0"]
-gradient = SubResource("Gradient_vo7s0")
+gradient = SubResource("Gradient_kxh2y")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4e0jd"]
 size = Vector2(1155, 175)
@@ -85,9 +84,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 510.0
-offset_right = 590.0
-offset_bottom = 50.0
+offset_left = 512.0
+offset_top = 3.0
+offset_right = 592.0
+offset_bottom = 53.0
 grow_horizontal = 2
 
 [node name="Label" type="Label" parent="UI/TimeBox"]
@@ -101,27 +101,31 @@ label_settings = ExtResource("5_nwr88")
 
 [node name="ScoreBox" type="VBoxContainer" parent="UI"]
 layout_mode = 1
-offset_left = 1.0
-offset_right = 44.0
-offset_bottom = 50.0
+offset_left = 1024.0
+offset_top = 4.0
+offset_right = 1139.0
+offset_bottom = 121.0
 
 [node name="Label" type="Label" parent="UI/ScoreBox"]
 layout_mode = 2
 text = "SCORE"
 label_settings = ExtResource("5_nwr88")
+horizontal_alignment = 2
 
 [node name="Score" type="Label" parent="UI/ScoreBox"]
 layout_mode = 2
 label_settings = ExtResource("5_nwr88")
+horizontal_alignment = 2
 
 [node name="GoldBox" type="VBoxContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1020.0
-offset_right = 1100.0
-offset_bottom = 50.0
+offset_left = -38.0
+offset_top = 3.0
+offset_right = 42.0
+offset_bottom = 53.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -130,12 +134,10 @@ size_flags_vertical = 8
 layout_mode = 2
 text = "OR"
 label_settings = ExtResource("5_nwr88")
-horizontal_alignment = 2
 
 [node name="Gold" type="Label" parent="UI/GoldBox"]
 layout_mode = 2
 label_settings = ExtResource("5_nwr88")
-horizontal_alignment = 2
 
 [node name="InputPrompts" type="Control" parent="UI"]
 anchors_preset = 0
@@ -147,25 +149,20 @@ offset_bottom = 624.0
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/InputPrompts"]
 modulate = Color(0.643137, 0.643137, 0.643137, 1)
 layout_mode = 0
-offset_left = 74.0
+offset_left = 33.0
 offset_top = -30.0
-offset_right = 170.0
+offset_right = 231.0
 offset_bottom = 10.0
-
-[node name="KeyboardSpaceIcon" type="Sprite2D" parent="UI/InputPrompts/HBoxContainer"]
-position = Vector2(-64, 20)
-scale = Vector2(0.625, 0.625)
-texture = ExtResource("6_c3blp")
 
 [node name="Label" type="Label" parent="UI/InputPrompts/HBoxContainer"]
 layout_mode = 2
 text = "SAUTER"
 label_settings = ExtResource("5_nwr88")
 
-[node name="Keyboard1" type="Sprite2D" parent="UI/InputPrompts/HBoxContainer"]
-position = Vector2(-22.9999, 20)
-scale = Vector2(0.625, 0.625)
-texture = ExtResource("7_ra71r")
+[node name="KeyboardZ" type="Sprite2D" parent="UI/InputPrompts/HBoxContainer"]
+position = Vector2(-21, 19)
+scale = Vector2(0.65625, 0.65625)
+texture = ExtResource("7_15ut4")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI/InputPrompts"]
 modulate = Color(0.643137, 0.643137, 0.643137, 1)
@@ -180,10 +177,10 @@ layout_mode = 2
 text = "SAUTER"
 label_settings = ExtResource("5_nwr88")
 
-[node name="Keyboard3" type="Sprite2D" parent="UI/InputPrompts/HBoxContainer2"]
-position = Vector2(-22, 19)
-scale = Vector2(0.624999, 0.624999)
-texture = ExtResource("8_iyu05")
+[node name="KeyboardX" type="Sprite2D" parent="UI/InputPrompts/HBoxContainer2"]
+position = Vector2(-20, 21)
+scale = Vector2(0.65625, 0.65625)
+texture = ExtResource("8_dexpt")
 
 [node name="Jump1" type="ProgressBar" parent="UI"]
 layout_mode = 1

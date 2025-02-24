@@ -1,0 +1,202 @@
+[gd_scene load_steps=20 format=3 uid="uid://dgr3xntomk8nl"]
+
+[ext_resource type="Script" path="res://assets/scripts/main_to_game.gd" id="1_hik1f"]
+[ext_resource type="Texture2D" uid="uid://b43kaqsymbyui" path="res://assets/lion/lion_idle.png" id="2_7kace"]
+[ext_resource type="Texture2D" uid="uid://c7jdemc8824sw" path="res://assets/lion/lion_runing_0001.png" id="3_nm58e"]
+[ext_resource type="Texture2D" uid="uid://d3m1ue82dpooi" path="res://assets/lion/lion_runing_0002.png" id="4_ax8yw"]
+[ext_resource type="Texture2D" uid="uid://cn2na41727uhk" path="res://assets/lion/lion_runing_0003.png" id="5_ww531"]
+[ext_resource type="Texture2D" uid="uid://bx2smafi6p43a" path="res://assets/lion/lion_runing_0004.png" id="6_ktpbs"]
+[ext_resource type="FontFile" uid="uid://cdvangecxrsrq" path="res://assets/fonts/handwritten.otf" id="7_05kw1"]
+[ext_resource type="PackedScene" uid="uid://sogbanw2v1k5" path="res://assets/prefabs/Ring.tscn" id="8_tcjy6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_td2np"]
+line_spacing = 3.22
+font = ExtResource("7_05kw1")
+font_size = 88
+font_color = Color(0.607176, 0.424539, 0.195591, 1)
+outline_size = 47
+shadow_size = 85
+shadow_color = Color(0.788235, 0.466667, 0.164706, 0.843137)
+
+[sub_resource type="Animation" id="Animation_nvw3c"]
+resource_name = "title_big"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.795, 0.795), Vector2(0.89, 0.89), Vector2(0.795, 0.795)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_t00c8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k6p3m"]
+_data = {
+"RESET": SubResource("Animation_t00c8"),
+"title_big": SubResource("Animation_nvw3c")
+}
+
+[sub_resource type="SphereMesh" id="SphereMesh_e2f40"]
+
+[sub_resource type="Gradient" id="Gradient_icjbm"]
+colors = PackedColorArray(0, 0, 0, 1, 0.690196, 0.419608, 0.164706, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_51onl"]
+gradient = SubResource("Gradient_icjbm")
+
+[sub_resource type="QuadMesh" id="QuadMesh_pr47g"]
+
+[sub_resource type="Gradient" id="Gradient_vo7s0"]
+colors = PackedColorArray(0.813255, 0.578957, 0.335423, 1, 0.811765, 0.580392, 0.337255, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gtgvq"]
+gradient = SubResource("Gradient_vo7s0")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_khepm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7kace")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nm58e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ax8yw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ww531")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ktpbs")
+}],
+"loop": true,
+"name": &"runing",
+"speed": 5.0
+}]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hik1f")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.169245, 0.169245, 0.169245, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.000868052
+anchor_top = 0.310702
+anchor_right = 0.965046
+anchor_bottom = 0.383233
+offset_top = 51.6649
+offset_right = -8.73315
+offset_bottom = 169.665
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.261799
+text = "CIRQUE DU LION"
+label_settings = SubResource("LabelSettings_td2np")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k6p3m")
+}
+autoplay = "title_big"
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(855.5, 350.875)
+scale = Vector2(260.25, 260.25)
+mesh = SubResource("SphereMesh_e2f40")
+texture = SubResource("GradientTexture1D_51onl")
+
+[node name="Ring" parent="." instance=ExtResource("8_tcjy6")]
+position = Vector2(858.584, 783.855)
+scale = Vector2(0.255, 0.36)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 732.0
+offset_top = 316.0
+offset_right = 1196.0
+offset_bottom = 473.0
+scale = Vector2(0.535, 0.535)
+theme_override_colors/font_color = Color(0.662745, 0.392157, 0.137255, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_05kw1")
+theme_override_font_sizes/font_size = 76
+text = "JOUER!"
+flat = true
+
+[node name="Floor" type="MeshInstance2D" parent="."]
+position = Vector2(587, 692)
+scale = Vector2(1225.85, 188.122)
+mesh = SubResource("QuadMesh_pr47g")
+texture = SubResource("GradientTexture1D_gtgvq")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(184, 541)
+scale = Vector2(0.228662, 0.228662)
+sprite_frames = SubResource("SpriteFrames_khepm")
+animation = &"runing"
+autoplay = "runing"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
