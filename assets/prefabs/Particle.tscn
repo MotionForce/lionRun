@@ -17,6 +17,7 @@ _data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 0.252747), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Particle" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_jshpl")
 
 [node name="TextParticle" type="SubViewport" parent="."]

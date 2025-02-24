@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://tb4iilejyldl"]
+[gd_scene load_steps=11 format=3 uid="uid://tb4iilejyldl"]
 
 [ext_resource type="FontFile" uid="uid://cdvangecxrsrq" path="res://assets/fonts/handwritten.otf" id="1_0pmrp"]
-[ext_resource type="AudioStream" uid="uid://dilwlcxe675co" path="res://assets/sound/brass-fail-10-b-207137.wav" id="2_8yjbp"]
+[ext_resource type="Script" path="res://assets/DeathScreenController.gd" id="1_fco7w"]
+[ext_resource type="AudioStream" uid="uid://dilwlcxe675co" path="res://assets/sound/GameOverSFX.wav" id="2_8yjbp"]
 [ext_resource type="Script" path="res://assets/scripts/GameOverSound.gd" id="3_k5jhm"]
+[ext_resource type="AudioStream" uid="uid://bl2fllgm2td2e" path="res://assets/sound/OnClickSFX.wav" id="4_ywa87"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3dwyl"]
 font = ExtResource("1_0pmrp")
@@ -29,12 +31,14 @@ font = ExtResource("1_0pmrp")
 outline_size = 5
 
 [node name="DeathScreen" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fco7w")
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color(1, 1, 1, 0.921569)
@@ -197,7 +201,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
-process_mode = 2
 stream = ExtResource("2_8yjbp")
 volume_db = -24.0
 script = ExtResource("3_k5jhm")
+
+[node name="OnClickSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ywa87")
+
+[connection signal="button_down" from="Panel/HBoxContainer2/Restart" to="." method="_on_restart_button_down"]
+[connection signal="button_down" from="Panel/HBoxContainer2/MainMenu" to="." method="_on_main_menu_button_down"]

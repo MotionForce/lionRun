@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dilwlcxe675co"
-path="res://.godot/imported/brass-fail-10-b-207137.wav-778980b87d5ba750fe49efb7f7755606.sample"
+path="res://.godot/imported/GameOverSFX.wav-4b321c4ef9fe41e3ce9425a0b9e9ed2d.sample"
 
 [deps]
 
-source_file="res://assets/sound/brass-fail-10-b-207137.wav"
-dest_files=["res://.godot/imported/brass-fail-10-b-207137.wav-778980b87d5ba750fe49efb7f7755606.sample"]
+source_file="res://assets/sound/GameOverSFX.wav"
+dest_files=["res://.godot/imported/GameOverSFX.wav-4b321c4ef9fe41e3ce9425a0b9e9ed2d.sample"]
 
 [params]
 
