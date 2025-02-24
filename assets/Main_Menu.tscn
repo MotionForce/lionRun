@@ -180,6 +180,7 @@ offset_top = 316.0
 offset_right = 1196.0
 offset_bottom = 473.0
 scale = Vector2(0.535, 0.535)
+tooltip_text = " "
 theme_override_colors/font_color = Color(0.662745, 0.392157, 0.137255, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
