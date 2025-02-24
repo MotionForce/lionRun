@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bjy4oep0djwsj"]
+[gd_scene load_steps=24 format=3 uid="uid://bjy4oep0djwsj"]
 
 [ext_resource type="Script" path="res://assets/scripts/main_to_game.gd" id="1_hik1f"]
 [ext_resource type="Texture2D" uid="uid://b43kaqsymbyui" path="res://assets/lion/lion_idle.png" id="2_7kace"]
@@ -88,6 +88,12 @@ colors = PackedColorArray(0, 0, 0, 1, 0.690196, 0.419608, 0.164706, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_51onl"]
 gradient = SubResource("Gradient_icjbm")
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_xgmyr"]
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_rcm3t"]
+events = [SubResource("InputEventJoypadButton_xgmyr")]
 
 [sub_resource type="QuadMesh" id="QuadMesh_pr47g"]
 
@@ -184,6 +190,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("7_05kw1")
 theme_override_font_sizes/font_size = 76
+shortcut = SubResource("Shortcut_rcm3t")
 text = "JOUER!"
 flat = true
 
