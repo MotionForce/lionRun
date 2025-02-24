@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dgr3xntomk8nl"]
+[gd_scene load_steps=22 format=3 uid="uid://bjy4oep0djwsj"]
 
 [ext_resource type="Script" path="res://assets/scripts/main_to_game.gd" id="1_hik1f"]
 [ext_resource type="Texture2D" uid="uid://b43kaqsymbyui" path="res://assets/lion/lion_idle.png" id="2_7kace"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bx2smafi6p43a" path="res://assets/lion/lion_runing_0004.png" id="6_ktpbs"]
 [ext_resource type="FontFile" uid="uid://cdvangecxrsrq" path="res://assets/fonts/handwritten.otf" id="7_05kw1"]
 [ext_resource type="PackedScene" uid="uid://sogbanw2v1k5" path="res://assets/prefabs/Ring.tscn" id="8_tcjy6"]
+[ext_resource type="AudioStream" uid="uid://2n1u0gy16j43" path="res://assets/sound/GameStartSFX.mp3" id="9_gyusv"]
+[ext_resource type="AudioStream" uid="uid://8xid3h0jq4af" path="res://assets/sound/Main Menu Theme.mp3" id="10_ubl87"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_td2np"]
 line_spacing = 3.22
@@ -17,6 +19,33 @@ font_color = Color(0.607176, 0.424539, 0.195591, 1)
 outline_size = 47
 shadow_size = 85
 shadow_color = Color(0.788235, 0.466667, 0.164706, 0.843137)
+
+[sub_resource type="Animation" id="Animation_t00c8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_nvw3c"]
 resource_name = "title_big"
@@ -44,33 +73,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 6.28319]
-}
-
-[sub_resource type="Animation" id="Animation_t00c8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k6p3m"]
@@ -199,4 +201,13 @@ sprite_frames = SubResource("SpriteFrames_khepm")
 animation = &"runing"
 autoplay = "runing"
 
+[node name="OnClickPlay" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_gyusv")
+
+[node name="MainMenuTheme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_ubl87")
+volume_db = -10.0
+autoplay = true
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="finished" from="MainMenuTheme" to="." method="loop_main_menu_theme"]
