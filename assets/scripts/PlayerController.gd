@@ -132,6 +132,7 @@ func change_gold_amount(amount):
 		on_player_reach_0_gold()
 
 func on_player_reach_0_gold():
+	get_parent().get_parent().gold_display.text = str(0)
 	get_parent().get_parent().end_game(max_gold_acquired, score)
 
 func on_queue_free_obstacle(obstacle):
