@@ -334,20 +334,22 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 512.0
+offset_left = 402.0
 offset_top = 3.0
-offset_right = 592.0
-offset_bottom = 53.0
+offset_right = 702.0
+offset_bottom = 55.0
 grow_horizontal = 2
 
 [node name="Label" type="Label" parent="UI/TimeBox"]
 layout_mode = 2
 text = "TEMPS"
 label_settings = ExtResource("5_nwr88")
+horizontal_alignment = 1
 
 [node name="Time" type="Label" parent="UI/TimeBox"]
 layout_mode = 2
 label_settings = ExtResource("5_nwr88")
+horizontal_alignment = 1
 
 [node name="ScoreBox" type="VBoxContainer" parent="UI"]
 layout_mode = 1
