@@ -117,7 +117,17 @@ func _on_game_timer_timeout():
 
 func determine_height_of_obstacle():
 	var sprite2D = next_obstacle.get_node("Sprite2D")
-	sprite2D.position.y = random.randf_range(sprite2D.position.y, 0)
+	var min_height = 0
+	if next_obstacle.is_in_group("Ring"):
+		var random_num = randi_range(0, 9)
+		var chance = floor((game_time - (speed_progression * OBSTACLE_MAX_SPEED - INITIAL_MOVE_SPEED) / OBSTACLE_ACCELERATION) / 240)
+		if chance < 0:
+			chance = 0
+		elif chance > 5:
+			chance = 5
+		if random_num < chance:
+			min_height = randf_range(sprite2D.position.y / 2, sprite2D.position.y / 4)
+	sprite2D.position.y = random.randf_range(sprite2D.position.y, min_height)
 
 func determine_ground_y():
 	var shape = ground.get_node("CollisionShape2D")
@@ -165,7 +175,12 @@ func determine_stack():
 	var cannon_ball_prefab = load(cannon_ball_prefab_path)
 	var random_num = random.randi_range(0, 9)
 	
-	if next_obstacle.is_in_group("Queue_Stick") || random_num < 6 - (3 * speed_progression):
+	var reduced_chance = floor((game_time - (speed_progression * OBSTACLE_MAX_SPEED - INITIAL_MOVE_SPEED) / OBSTACLE_ACCELERATION) / 300)
+	if reduced_chance < 0:
+		reduced_chance = 0
+	elif reduced_chance > 2:
+		reduced_chance = 2
+	if next_obstacle.is_in_group("Queue_Stick") || random_num < 6 - (3 * speed_progression) - reduced_chance:
 		return
 	
 	var cannon_ball = cannon_ball_prefab.instantiate()
@@ -293,7 +308,7 @@ func get_game_time():
 	var seconds_string = str(seconds)
 	if seconds < 10 :
 		seconds_string = "0" + str(seconds)
-	return str(hours) + ":" + minutes_string + ":" + seconds_string
+	return str(hours) + ":" + minutes_string + ":" + seconds_string + " "
 
 func end_game(gold, score):
 	get_tree().paused = true

@@ -143,6 +143,7 @@ func on_queue_free_obstacle(obstacle):
 	patience_stack += 1
 	gold_bonus_stack -= 1 * floor(1 + get_game_time() / 90)
 	if gold_bonus_stack < 0:
+		patience_stack -= gold_bonus_stack * floor(get_game_time() / 180)
 		gold_bonus_stack = 0
 
 func calculate_gold_reward():
