@@ -42,8 +42,9 @@ var initial_position = Vector2(1500, -35)
 
 
 func _ready():
-	death_screen.visible = false
 	obstacle_move_speed = INITIAL_MOVE_SPEED
+	update_speed_progression()
+	death_screen.visible = false
 	determine_ground_y()
 	determine_next_obstacle()
 	jump1.max_value = (player_controller.timer1.get_wait_time() - player_controller.time_for_fast_jump)
@@ -145,7 +146,7 @@ func determine_if_stick():
 	var smallest_height = 5000
 	for cannon_ball in previous_cannon_balls_stack:
 		var minimum_jump_distance = cannon_ball.get_node("Sprite2D/Area2D/CollisionShape2D").global_position.distance_to(cannon_ball.get_node("Sprite2D/Minimum Jump Distance").global_position)
-		var cannon_ball_height = ground_global_y - cannon_ball.get_node("Sprite2D").global_position.y - (cannon_ball.get_node("Sprite2D").get_offset().y * cannon_ball.get_node("Sprite2D").scale.y) + minimum_jump_distance
+		var cannon_ball_height = ground_global_y - cannon_ball.get_node("Sprite2D").global_position.y - (cannon_ball.get_node("Sprite2D").get_offset().y * cannon_ball.get_node("Sprite2D").scale.y) - minimum_jump_distance
 		if cannon_ball_height < smallest_height:
 			smallest_height = cannon_ball_height
 	if obstacle_minimum_jump > smallest_height:
@@ -269,7 +270,7 @@ func determine_general_cannon_ball_stack(maximum_height, minimum_distance_from_j
 	var minimum_space_for_tripe = minimum_space_for_double + minimum_stack_distance
 	var random_num = random.randi_range(0, 9)
 	var cannon_ball_prefab = load(cannon_ball_prefab_path)
-
+	
 	if available_space >= minimum_space_for_tripe && random_num < 1 + (2 * speed_progression):
 		var cannon_balls = [cannon_ball_prefab.instantiate(), cannon_ball_prefab.instantiate(), cannon_ball_prefab.instantiate()]
 		for cannon_ball in cannon_balls:

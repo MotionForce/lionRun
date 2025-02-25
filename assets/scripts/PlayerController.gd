@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const MAX_JUMP_HEIGHT = 325
 const MIN_JUMP_HEIGHT = 105
-const INITIAL_GOLD = 300
+const INITIAL_GOLD = 500
 
 const INITIAL_COLLISION_COST = -100
 const INITIAL_RING_REWARD = 100
