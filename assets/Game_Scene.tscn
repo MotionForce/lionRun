@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dve7ju37uf7li"]
+[gd_scene load_steps=19 format=3 uid="uid://dve7ju37uf7li"]
 
 [ext_resource type="Script" path="res://assets/scripts/GameManager.gd" id="1_mkis0"]
 [ext_resource type="Texture2D" uid="uid://bhgiercnocyl8" path="res://assets/lamp.png" id="3_lx73w"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://b63nlvdbf577w" path="res://assets/crowd.png" id="5_jvyg4"]
 [ext_resource type="LabelSettings" uid="uid://cqxuyqi8wnm8m" path="res://assets/label.tres" id="5_nwr88"]
 [ext_resource type="Texture2D" uid="uid://rfkxpunut1x4" path="res://assets/input prompts/keyboard_z.svg" id="7_15ut4"]
-[ext_resource type="PackedScene" uid="uid://bou4de68n1tho" path="res://assets/prefabs/Cannon.tscn" id="7_hf64x"]
 [ext_resource type="Texture2D" uid="uid://d0d7o2627hreh" path="res://assets/input prompts/keyboard_x.svg" id="8_dexpt"]
 [ext_resource type="PackedScene" uid="uid://tb4iilejyldl" path="res://assets/death_screen.tscn" id="9_oybah"]
 [ext_resource type="Texture2D" uid="uid://bml112dudaey7" path="res://assets/bg.png" id="10_yp3pq"]
@@ -286,8 +285,6 @@ position = Vector2(0, -35)
 
 [node name="Obstacles" type="Node2D" parent="."]
 position = Vector2(0, -35)
-
-[node name="Cannon" parent="Obstacles" instance=ExtResource("7_hf64x")]
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(500, -35)
