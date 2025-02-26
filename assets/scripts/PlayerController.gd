@@ -144,6 +144,8 @@ func on_queue_free_obstacle(obstacle):
 	gold_bonus_stack -= 1 * floor(1 + get_game_time() / 90)
 	if gold_bonus_stack < 0:
 		patience_stack -= gold_bonus_stack * floor(get_game_time() / 180)
+		if patience_stack < 0:
+			patience_stack = 0
 		gold_bonus_stack = 0
 
 func calculate_gold_reward():
@@ -153,7 +155,7 @@ func calculate_gold_reward():
 func calculate_collision_cost():
 	var collision_cost = INITIAL_COLLISION_COST * collision_cost_stack
 	if patience_stack >= float(INITIAL_PATIENCE_THRESHOLD) / (1 + (4 * get_speed_progression())):
-		collision_cost -= INITIAL_COLLISION_COST * patience_stack
+		collision_cost += INITIAL_COLLISION_COST * patience_stack
 	return collision_cost
 
 func get_speed_progression():
