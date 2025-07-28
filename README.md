@@ -1,2 +1,2 @@
 # LionRun
-Link: https://itch.io/game/summary/3352274
+Link: [Cirque du lion](https://cirquecarnaval.itch.io/cirque-du-lion)
